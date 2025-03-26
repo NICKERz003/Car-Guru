@@ -10,25 +10,31 @@
       </form>
     </div>
     <div class="box-right">
-      <button a href="#" class="login-button">เข้าสู่ระบบ/สมัครสมาชิก</button>
+      <router-link to="/login-page">
+        <button class="login-button">เข้าสู่ระบบ/สมัครสมาชิก</button>  
+      </router-link>
+      
     </div>
  </section>
 
  <section id="nav-bar">
-  <button class="nav-button">หน้าหลัก</button>
-    <div class="dropdown">
-    <button class="nav-button">รถยนต์</button>
+  <div>
+    <button class="nav-button" @click="navigateTo('/')">หน้าหลัก</button>
+
+  <div class="dropdown">
+    <button @click="navigateTo('/car-detail/:id')" class="nav-button">รถยนต์</button>
     <div class="dropdown-content">
-      <a href="#">รถยนต์ไฟฟ้า</a>
-      <a href="#">รถยนต์ใหม่</a>
-      <a href="#">link3</a>
-      <a href="#">link4</a>
-      <a href="#">link5</a>
+      <button @click="navigateTo('/electric-cars')" class="dropdown-item">รถยนต์ไฟฟ้า</button>
+        <button @click="navigateTo('/new-cars')" class="dropdown-item">รถยนต์ใหม่</button>
+        <button @click="navigateTo('/link3')" class="dropdown-item">link3</button>
+        <button @click="navigateTo('/link4')" class="dropdown-item">link4</button>
+        <button @click="navigateTo('/link5')" class="dropdown-item">link5</button>
     </div>
   </div>
-  <button class="nav-button">ข่าวสาร</button>
-  <button class="nav-button">คำนวณการผ่อนชำระ</button>
-  <button class="nav-button">เกี่ยวกับเรา</button>
+
+    <button class="nav-button" @click="navigateTo('/car-comparison')">เปรียบเทียบรถยนต์</button>
+    <button class="nav-button" @click="navigateTo('/loan-calculator')">คำนวณการผ่อนชำระ</button>
+  </div>
  </section>
 
  <section id="Image">
@@ -37,6 +43,7 @@
 
   <section id="content">
     <h1>เนื้อหา</h1>
+    <router-view></router-view>
   </section>
 
   <section id="footer">
@@ -49,6 +56,11 @@
 <script>
 export default {
   name: 'App',
+  methods: {
+    navigateTo(path) {
+      this.$router.push(path);
+    }
+  }
 }
 </script>
 
@@ -180,14 +192,19 @@ export default {
   z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content button {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: flex;
+  border: none;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.dropdown-content a:hover {
+.dropdown-content button:hover {
   background-color: #ddd;
 }
 
