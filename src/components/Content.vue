@@ -14,6 +14,8 @@ export default {
   border: 1px solid #ccc;
   display: flex;
   justify-content: center;
+  margin: auto;
+  width: 70%;
   height: 500px;
   background-color: #e7e7e7;
 }

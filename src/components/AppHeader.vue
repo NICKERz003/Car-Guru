@@ -11,7 +11,7 @@
       </form>
     </div>
     <div class="box-right">
-        <button @click="navigateTo('/LoginPage')" class="login-button">เข้าสู่ระบบ/สมัครสมาชิก</button>  
+        <router-link to ="/LoginPage"><button @click="showModal = true" class="login-button">เข้าสู่ระบบ/สมัครสมาชิก</button>  </router-link>
     </div>
  </section>
 </template>

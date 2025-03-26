@@ -51,6 +51,8 @@ export default {
 
 .nav-button:hover {
   border: 1px solid #555555;
+  color: white;
+  background-color: #2c3e50;
 }
 
 .dropdown {
@@ -61,14 +63,14 @@ export default {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #2c3e50;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 .dropdown-content button {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: flex;
@@ -81,6 +83,7 @@ export default {
 
 .dropdown-content button:hover {
   background-color: #ddd;
+  color: black;
 }
 
 .dropdown:hover .dropdown-content {
