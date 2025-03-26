@@ -1,21 +1,19 @@
 <template>
   <div>
-    <header-component />
-    <navbar-component />
-    <div id="content">
-      <h1>Welcome to Car-Guru</h1>
-    </div>
+    <Advertising_space />
+    <Content />
   </div>
 </template>
 
 <script>
-import HeaderComponent from './AppHeader.vue';
-import NavbarComponent from './Navbar.vue';
+import Advertising_space from './Advertising_space.vue';
+import Content from './Content.vue';
 
 export default {
+  name: 'HomePage',
   components: {
-    HeaderComponent,
-    NavbarComponent
+    Advertising_space,
+    Content
   }
 };
 </script>
