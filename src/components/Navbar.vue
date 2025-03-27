@@ -1,7 +1,7 @@
 <template>
 <section id="nav-bar">
   <div>
-    <router-link to ="/Homepage"><button class="nav-button" >หน้าหลัก</button></router-link>
+    <router-link to ="/"><button class="nav-button" >หน้าหลัก</button></router-link>
 
   <div class="dropdown">
     <router-link to ="/car-list"><button class="nav-button">รถยนต์</button></router-link>

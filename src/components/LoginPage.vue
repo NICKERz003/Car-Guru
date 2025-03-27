@@ -13,15 +13,17 @@
       <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
       <button type="submit">เข้าสู่ระบบ</button>
     </form>
-    <p>ยังไม่มีบัญชี? <router-link to="/register">สมัครสมาชิก</router-link></p>
+    <p>ยังไม่มีบัญชี? <router-link to="/register-page">สมัครสมาชิก</router-link></p>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Register from './Register.vue';
 
 export default {
   name: 'LoginPage',
+  components: Register,
   data() {
     return {
       email: '',

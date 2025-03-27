@@ -11,21 +11,23 @@ import Content from '@/components/Content.vue';
 import FooterDetail from '@/components/FooterKub.vue';
 import UpdateNews from '@/components/UpdateNews.vue';
 import Carlist from '@/components/Carlist.vue';
+import Register from '@/components/Register.vue';
 
 
 const routes = [
     { path: '/car-search', component: CarSearch },
     { path: '/car-comparison', component: CarComparison },
     { path: '/loan-calculator', component: LoanCalculator },
-    { path: '/car-detail/:id', component: CarDetail },
+    { path: '/car-detail/:id', component: CarDetail, props: true },
     { path: '/login-page', component: LoginPage, meta: { noHeader: true, noFooter: true } },
     { path: '/navbar', component: Navbar },
     { path: '/advertising_space', component: Advertising_space },
     { path: '/content', component: Content },
     { path: '/footer', component: FooterDetail },
-    { path: '/Homepage', component: Home },
+    { path: '/', component: Home },
     { path: '/UpdateNews', component: UpdateNews },
-    { path: '/car-list', component: Carlist }
+    { path: '/car-list', component: Carlist },
+    { path: '/register-page', component: Register, meta: { noHeader: true, noFooter: true } }
 
 ];
 

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <AppHeader v-if="!isLoginPage"></AppHeader>
-    <NavbarComponent v-if="!isLoginPage"></NavbarComponent>
+    <AppHeader v-if="!isLoginPage && !isRegisterPage"></AppHeader>
+    <NavbarComponent v-if="!isLoginPage && !isRegisterPage"></NavbarComponent>
     <router-view></router-view>
-    <FooterKub v-if="!isLoginPage"></FooterKub>
+    <FooterKub v-if="!isLoginPage && !isRegisterPage"></FooterKub>
   </div>
 </template>
 
@@ -21,12 +21,15 @@ export default {
     NavbarComponent,
     FooterKub,
   },
-   computed: {
+  computed: {
+    // ตรวจสอบว่าเส้นทางปัจจุบันคือหน้า login หรือ register หรือไม่
     isLoginPage() {
+      return this.$route.meta.noHeader && this.$route.meta.noFooter;
+    },
+    isRegisterPage() {
       return this.$route.meta.noHeader && this.$route.meta.noFooter;
     }
   }
-
 }
 </script>
 
