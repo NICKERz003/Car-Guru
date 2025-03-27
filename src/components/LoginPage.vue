@@ -1,91 +1,118 @@
 <template>
-    <div v-if="showModal" class="modal-overlay">
-      <div class="modal-content">
-        <h2>กรุณากรอกข้อมูลการสมัคร</h2>
-        <!-- ฟอร์มการสมัคร -->
-        <form @submit.prevent="submitForm">
-          <div>
-            <label for="email">อีเมล:</label>
-            <input type="email" v-model="email" id="email" required />
-          </div>
-          <div>
-            <label for="password">รหัสผ่าน:</label>
-            <input type="password" v-model="password" id="password" required />
-          </div>
-          <div>
-            <label for="confirmPassword">ยืนยันรหัสผ่าน:</label>
-            <input type="password" v-model="confirmPassword" id="confirmPassword" required />
-          </div>
-          <button type="submit">สมัครสมาชิก</button>
-          <button type="button" @click="showModal = false">ปิด</button>
-        </form>
+  <div class="login-container">
+    <h1>เข้าสู่ระบบ</h1>
+    <form @submit.prevent="handleSubmit">
+      <div class="input-group">
+        <label for="email">อีเมล:</label>
+        <input type="email" id="email" v-model="email" required placeholder="กรุณากรอกอีเมล" />
       </div>
-    </div>
+      <div class="input-group">
+        <label for="password">รหัสผ่าน:</label>
+        <input type="password" id="password" v-model="password" required placeholder="กรุณากรอกรหัสผ่าน" />
+      </div>
+      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <button type="submit">เข้าสู่ระบบ</button>
+    </form>
+    <p>ยังไม่มีบัญชี? <router-link to="/register">สมัครสมาชิก</router-link></p>
+  </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'LoginPage',
   data() {
     return {
-      showModal: false,
       email: '',
       password: '',
-      confirmPassword: '',
+      errorMessage: '', // ใช้สำหรับแสดงข้อความผิดพลาด
     };
   },
   methods: {
-    submitForm() {
-      if (this.password !== this.confirmPassword) {
-        alert("รหัสผ่านไม่ตรงกัน");
-        return;
-      }
+    // ฟังก์ชันที่ทำงานเมื่อกดปุ่ม "เข้าสู่ระบบ"
+    async handleSubmit() {
+      try {
+        // รีเซ็ตข้อความผิดพลาดก่อนส่งคำขอ
+        this.errorMessage = '';
+        
+        // ส่งคำขอล็อกอินไปที่ API
+        const response = await axios.post('/api/login', {
+          email: this.email,
+          password: this.password,
+        });
 
-      // ทำการสมัครสมาชิกที่นี่
-      console.log("สมัครสมาชิกด้วยอีเมล:", this.email);
-      this.showModal = false; // ปิด Modal หลังจากการสมัคร
+        // หากล็อกอินสำเร็จ, เก็บข้อมูลที่ได้รับจากเซิร์ฟเวอร์ (เช่น token)
+        localStorage.setItem('authToken', response.data.token);
+        
+        // เปลี่ยนเส้นทางไปยังหน้า Dashboard
+        this.$router.push('/dashboard');
+      } catch (error) {
+        // หากเกิดข้อผิดพลาด, แสดงข้อความผิดพลาด
+        if (error.response && error.response.data) {
+          this.errorMessage = error.response.data.message || 'การเข้าสู่ระบบล้มเหลว';
+        } else {
+          this.errorMessage = 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้';
+        }
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-/* ปรับแต่งสไตล์ของ modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* พื้นหลังมืด */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: white;
+.login-container {
+  width: 300px;
+  margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 button {
-  margin-top: 10px;
-  padding: 10px;
   width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
+button:hover {
+  background-color: #45a049;
 }
 
-button[type="button"] {
-  background-color: #f44336;
-  color: white;
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
 }
 </style>

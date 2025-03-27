@@ -11,16 +11,18 @@
       </form>
     </div>
     <div class="box-right">
-        <router-link to ="/LoginPage"><button @click="showModal = true" class="login-button">เข้าสู่ระบบ/สมัครสมาชิก</button>  </router-link>
+      <LoginBtn></LoginBtn>
     </div>
  </section>
 </template>
 
 <script>
-
+import LoginBtn from './LoginBtn.vue';
 export default {
   name: 'AppHeader',
-  // Your script logic here
+  components:{
+    LoginBtn
+  }
 }
 </script>
 <style scoped>
@@ -103,6 +105,3 @@ export default {
   box-shadow: 2px 4px 4px #c7c7c7;
 }
 </style> 
- 3. Create a new component called AppFooter.vue in the components folder. 
- The AppFooter.vue component will contain the footer of the application. 
- <!-- Footer.vue -->

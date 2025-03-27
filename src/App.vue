@@ -1,9 +1,9 @@
 <template>
   <div>
-    <AppHeader></AppHeader>
-    <NavbarComponent></NavbarComponent>
+    <AppHeader v-if="!isLoginPage"></AppHeader>
+    <NavbarComponent v-if="!isLoginPage"></NavbarComponent>
     <router-view></router-view>
-    <FooterKub></FooterKub>
+    <FooterKub v-if="!isLoginPage"></FooterKub>
   </div>
 </template>
 
@@ -19,9 +19,13 @@ export default {
   components: {
     AppHeader,
     NavbarComponent,
-    FooterKub
-
+    FooterKub,
   },
+   computed: {
+    isLoginPage() {
+      return this.$route.meta.noHeader && this.$route.meta.noFooter;
+    }
+  }
 
 }
 </script>
