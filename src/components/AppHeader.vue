@@ -2,7 +2,7 @@
 <template>
 <section id="header">
     <div class="logo">
-      <img src="/assets/logo_car-guru.png" alt="Car Guru Logo" width="50" height="50">
+      <img src="@/assets/logo_car-guru.png" alt="Car Guru Logo" width="80" height="80">
     </div>
       <div class="search-box">
       <form action="/action_page.php">

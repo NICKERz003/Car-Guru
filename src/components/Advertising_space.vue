@@ -1,6 +1,5 @@
 <template>
  <section id="Image">
-  <h1>พื้นที่โฆษณา</h1>
  </section>
 </template>
 <script>

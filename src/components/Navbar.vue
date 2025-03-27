@@ -16,7 +16,7 @@
 
     <router-link to ="/car-comparison"><button class="nav-button" >เปรียบเทียบรถยนต์</button></router-link>
     <router-link to ="/loan-calculator"><button class="nav-button" >คำนวณการผ่อนชำระ</button></router-link>
-    <router-link to ="/UpdateNews"><button class="nav-button" >ข่าวสาร</button></router-link>
+    <router-link to ="/Update-News"><button class="nav-button" >ข่าวสาร</button></router-link>
   </div>
  </section>
 </template>
