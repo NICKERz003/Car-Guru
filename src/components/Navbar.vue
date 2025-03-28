@@ -11,6 +11,13 @@
         <button @click="navigateTo('/link3')" class="dropdown-item">link3</button>
         <button @click="navigateTo('/link4')" class="dropdown-item">link4</button>
         <button @click="navigateTo('/link5')" class="dropdown-item">link5</button>
+        <button @click="navigateTo('/link6')" class="dropdown-item">link6</button>
+        <button @click="navigateTo('/link7')" class="dropdown-item">link7</button>
+        <button @click="navigateTo('/link8')" class="dropdown-item">link8</button>
+        <button @click="navigateTo('/link9')" class="dropdown-item">link9</button>
+        <button @click="navigateTo('/link10')" class="dropdown-item">link10</button>
+        <button @click="navigateTo('/link11')" class="dropdown-item">link11</button>
+
     </div>
   </div>
 

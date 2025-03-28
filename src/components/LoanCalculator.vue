@@ -1,5 +1,6 @@
 <template>
-  <h2>คำนวณการผ่อนชำระ</h2>
+  <section id="box">
+   <h2>คำนวณการผ่อนชำระ</h2>
   <div class="loan-calculator-container">
     <div class="left-section">
       <label for="brand">เลือกแบรนด์รถ:</label>
@@ -56,7 +57,9 @@
         </table>
       </div>
     </div>
-  </div>
+  </div> 
+  </section>
+  
 </template>
 
 <script>
@@ -134,8 +137,11 @@ export default {
 </script>
 
 <style scoped>
+#box {
+  text-align: center;
+  height: 500px;
+}
 .loan-calculator-container {
-  border: 1px solid;
   display: flex;
   justify-content: center;
   margin: 20px;
@@ -147,14 +153,14 @@ export default {
   border-radius: 20px;  
   width: 20%;
   padding: 10px;
-  border: 1px solid ;
+  box-shadow: 2px 2px 5px gray;
 }
 
 .right-section {
   border-radius: 20px;  
   width: 20%;
   padding: 10px;
-  border: 1px solid  ;
+  box-shadow: 2px 2px 5px gray;
 }
 
 h2 {
@@ -188,14 +194,15 @@ input[type="number"] {
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  width: 60%;
 }
 
 select {
-  padding: 12px; /* เพิ่มการปรับขนาด select */
+  padding: 12px;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 100%; /* ทำให้ select ยาวเต็มความกว้าง */
+  width: 100%;
 }
 
 table {

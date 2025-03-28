@@ -36,6 +36,10 @@ export default {
   text-shadow: 2px 2px 4px #000000;
 }
 
+img {
+    border-radius: 50%;
+}
+
 .logo {
   align-items: center;
   padding: 10px;

@@ -5,9 +5,9 @@ import LoanCalculator from '../components/LoanCalculator.vue'; // หน้า '
 import CarDetail from '../components/CarDetail.vue'; // หน้า 'รายละเอียดรถยนต์'
 import LoginPage from '@/components/LoginPage.vue'; // หน้า 'เข้าสู่ระบบ'
 import UpdateNews from '@/components/UpdateNews.vue';
-import Carlist from '@/components/Carlist.vue';
 import Register from '@/components/Register.vue';
 import BrandPage from '@/components/BrandPage.vue';
+import CarlistPage from '@/components/Carlist.vue';
 
 
 
@@ -15,7 +15,7 @@ import BrandPage from '@/components/BrandPage.vue';
 const routes = [
     // path หน้า link ต่างๆ
     { path: '/', component: Home },
-    { path: '/car-list', component: Carlist },
+    { path: '/car-list', component: CarlistPage },
     { path: '/car-comparison', component: CarComparison },
     { path: '/loan-calculator', component: LoanCalculator },
     { path: '/Update-News', component: UpdateNews },
