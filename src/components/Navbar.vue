@@ -6,17 +6,21 @@
   <div class="dropdown">
     <router-link to ="/car-list"><button class="nav-button">รถยนต์</button></router-link>
     <div class="dropdown-content">
-      <button @click="navigateTo('/electric-cars')" class="dropdown-item">รถยนต์ไฟฟ้า</button>
-        <button @click="navigateTo('/new-cars')" class="dropdown-item">รถยนต์ใหม่</button>
-        <button @click="navigateTo('/link3')" class="dropdown-item">link3</button>
-        <button @click="navigateTo('/link4')" class="dropdown-item">link4</button>
-        <button @click="navigateTo('/link5')" class="dropdown-item">link5</button>
-        <button @click="navigateTo('/link6')" class="dropdown-item">link6</button>
-        <button @click="navigateTo('/link7')" class="dropdown-item">link7</button>
-        <button @click="navigateTo('/link8')" class="dropdown-item">link8</button>
-        <button @click="navigateTo('/link9')" class="dropdown-item">link9</button>
-        <button @click="navigateTo('/link10')" class="dropdown-item">link10</button>
-        <button @click="navigateTo('/link11')" class="dropdown-item">link11</button>
+      <button @click="navigateTo('/Toyata-brand')" class="dropdown-item">• Toyota</button>
+        <button @click="navigateTo('/Isuzu-brand')" class="dropdown-item">• Isuzu</button>
+        <button @click="navigateTo('/Honda-brand')" class="dropdown-item">• Honda</button>
+        <button @click="navigateTo('/Mitsubishi-brand')" class="dropdown-item">• Mitsubishi</button>
+        <button @click="navigateTo('/Ford-brand')" class="dropdown-item">• Ford</button>
+        <button @click="navigateTo('/MG-brand')" class="dropdown-item">• MG</button>
+        <button @click="navigateTo('/Nissan-brand')" class="dropdown-item">• Nissan</button>
+        <button @click="navigateTo('/Mazda-brand')" class="dropdown-item">• Mazda</button>
+        <button @click="navigateTo('/GWM-brand')" class="dropdown-item">• GWM</button>
+        <button @click="navigateTo('/Suzuki-brand')" class="dropdown-item">• Suzuki</button>
+        <button @click="navigateTo('/Porsche-brand')" class="dropdown-item">• Porsche</button>
+        <button @click="navigateTo('/BMW-brand')" class="dropdown-item">• BMW</button>
+        <button @click="navigateTo('/Audi-brand')" class="dropdown-item">• Audi</button>
+        <button @click="navigateTo('/Ferrari-brand')" class="dropdown-item">• Ferrari</button>
+        <button @click="navigateTo('/Mercedes-Benz-brand')" class="dropdown-item">• Mercedes-Benz</button>
 
     </div>
   </div>

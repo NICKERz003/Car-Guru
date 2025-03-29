@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ComparisonComponent from './ComparisonComponent.vue';
+import ComparisonComponent from './CarComparepage_component/ComparisonComponent.vue';
 import Advertising_space from './Advertising_space.vue';
 export default {
   components:{

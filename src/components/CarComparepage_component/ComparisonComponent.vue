@@ -22,7 +22,7 @@
 
     <!-- Reset Button -->
     <button @click="resetComparison" class="reset-btn">
-      Reset Comparison
+      Reset
     </button>
 
     <!-- Modal for Selecting Cars -->
@@ -49,38 +49,117 @@
       </div>
     </div>
 
-    <!-- เปรียบเทียบตาราง -->
-    <div v-if="showComparisonTable" class="comparison-table">
-      <h3>Comparison Table</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>รายละเอียด</th>
-            <th v-for="car in selectedCars" :key="car.id">{{ car.brand }} {{ car.model }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>แบรนด์</td>
-            <td v-for="car in selectedCars" :key="car.id">{{ car.brand }}</td>
-          </tr>
-          <tr>
-            <td>รุ่น</td>
-            <td v-for="car in selectedCars" :key="car.id">{{ car.model }}</td>
-          </tr>
-          <tr>
-            <td>ราคา</td>
-            <td v-for="car in selectedCars" :key="car.id">{{ car.price }} บาท</td>
-          </tr>
-          <tr>
-            <td>ปีที่เปิดตัว</td>
-            <td v-for="car in selectedCars" :key="car.id">{{ car.year }}</td>
-          </tr>
-          <!-- เพิ่มข้อมูลการเปรียบเทียบเพิ่มเติมได้ -->
-        </tbody>
+<div v-if="showComparisonTable" class="comparison-table">
+    <h3>รายละเอียดเบื้องต้น</h3>
+    <div class="Detail_table">
+      <table style="width:22%" v-for="car in selectedCars" :key="car.id">
+        <tr>
+          <td>
+           <span>แบรนด์</span>
+            <h4>{{ car.brand }}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>ประเภท</span>
+            <h4>{{ car.type}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>ราคา</span>
+            <h4>{{car.price}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>ปีที่เปิดตัว</span>
+            <h4>{{car.year}}</h4>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+    <h3>จุดเด่น</h3>
+    <div class="Detail_table">
+       <table style="width:22%" v-for="car in selectedCars" :key="car.id">
+        <tr>
+          <td>
+            {{car.advantages}}
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+    <h3>สเปค</h3>
+    <div class="Detail_table" >
+      <table style="width:22%" v-for="car in selectedCars" :key="car.id">
+        <tr>
+          <td>
+           <span>เครื่องยนต์</span>
+            <h4>{{car.engine}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>ขนาดเครื่องยนต์</span>
+            <h4>{{car.cc}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>กำลังเครื่องยนต์ (แรงม้า)</span>
+            <h4>{{car.engine_power}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>ระบบเกียร์</span>
+            <h4>{{car.gear_system}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>รูปแบบเกียร์</span>
+            <h4>{{car.gear_form}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>ประเภทน้ำมันเชื้อเพลิง</span>
+            <h4>{{car.Fuel_type}}</h4>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+    <h3>ดีไซน์</h3>
+    <div class="Detail_table" >
+      <table style="width:22%" v-for="car in selectedCars" :key="car.id">
+        <tr>
+          <td>
+            <p>ภายใน:</p>{{car.interior_design }}
+            <p>ภายนอก:</p>{{car.exterior_design }}
+
+          </td>
+        </tr>
       </table>
     </div>
 
+    <h3>ระบบความปลอดภัย</h3>
+    <div class="Detail_table" >
+      <table style="width:22%" v-for="car in selectedCars" :key="car.id">
+        <tr>
+          <td>
+            {{car.security }}
+          </td>
+        </tr>
+      </table>
+    </div>
+</div>
   </section>
 </template>
 
@@ -120,6 +199,17 @@ export default {
         model: this.selectedModel,
         price: '100,000', // เพิ่มราคาจากข้อมูลจริง
         year: '2022', // เพิ่มปีจากข้อมูลจริง
+        type: 'SUV', // ประเภท
+        advantages: 'Lorem ipsum dolor sit amet consectetur.', // จุดเด่น
+        engine: 'DOHC 4 สูบ 16 วาล์ว i-VTEC', // เครื่องยนต์
+        cc: '1,498', // ขนาดเครื่องยนต์
+        engine_power: '121', // กำลังเครื่องยนต์
+        gear_system: 'เกียร์ออโต้แบบ CVT', // ระบบเกียร์
+        gear_form: 'N/A', // รูปแบบเกียร์
+        Fuel_type: 'เบนซิน 95', // ประเภทน้ำมัน
+        interior_design: 'สีทูโทน', // ดีไซน์ภายใน
+        exterior_design: 'สปอร์ต', // ดีไซน์ภายนอก
+        security: 'ระบบเบรก ABS, ระบบควบคุมการทรงตัว', // ระบบความปลอดภัย
         image: `https://via.placeholder.com/150?text=${this.selectedBrand}+${this.selectedModel}`,
         id: this.selectedCars.length + 1
       };
@@ -149,6 +239,13 @@ export default {
 </script>
 
 <style scoped>
+
+.Detail_table{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
 .compare-cars {
   padding: 20px;
 }
