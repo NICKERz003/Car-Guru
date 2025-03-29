@@ -1,17 +1,18 @@
 <template>
   <div>
-    <header-component />
-    <navbar-component />
-    <h2>เปรียบเทียบรถยนต์</h2>
-    <div v-for="car in cars" :key="car.id">
-      <p>{{ car.name }}</p>
-      <p>{{ car.specs }}</p>
-    </div>
+    <Advertising_space></Advertising_space>
+    <ComparisonComponent></ComparisonComponent>
   </div>
 </template>
 
 <script>
+import ComparisonComponent from './ComparisonComponent.vue';
+import Advertising_space from './Advertising_space.vue';
 export default {
+  components:{
+    ComparisonComponent,
+    Advertising_space
+  } ,
   data() {
     return {
       cars: [] // This will hold the car data for comparison

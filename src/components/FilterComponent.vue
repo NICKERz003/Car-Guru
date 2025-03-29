@@ -1,6 +1,6 @@
 <template>
   <div class="filter-container">
-    <h2>กรองข้อมูล</h2>
+    <h2>ค้นหารถยนต์ด้วยการกรองข้อมูล</h2>
     <form @submit.prevent="applyFilters">
       <div class="filter-group">
         <label for="brand">เลือกแบรนด์:</label>
@@ -82,6 +82,7 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: auto;
+  margin-top: 10px;
 }
 
 h2 {

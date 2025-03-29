@@ -54,14 +54,17 @@ export default {
 
 <style scoped>
 #news-section {
-  margin: 20px;
+  margin: auto;
+  padding: 20px;
   text-align: center;
+  width: 60%;
 }
 
 h2 {
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
+  border-bottom: 2px groove;
 }
 
 .news-container {

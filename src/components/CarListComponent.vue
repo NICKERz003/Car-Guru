@@ -91,24 +91,28 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 
 .car-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* แสดง 4 การ์ดในแต่ละแถว */
   gap: 20px;
-  width: 100%;
+  width: 70%;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .car-card {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
+  margin: auto;
   padding: 10px;
   transition: transform 0.3s;
+  width: 60%;
 }
 
 .car-image img {

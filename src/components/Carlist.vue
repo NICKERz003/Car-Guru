@@ -1,7 +1,9 @@
 <template>
   <div>
+    <Advertising_space></Advertising_space>
     <FilterComponent @apply-filters="applyFilters" @reset-filters="resetFilters" />
     <CarListComponent :cars="filteredCars" :filters="filters" />
+    <NewsCard></NewsCard>
   </div>
 </template>
 
@@ -9,11 +11,15 @@
 import axios from 'axios';
 import FilterComponent from './FilterComponent.vue';
 import CarListComponent from './CarListComponent.vue';
+import Advertising_space from './Advertising_space.vue';
+import NewsCard from './NewsCard.vue';
 export default {
   name: 'CarlistPage',
   components:{
   FilterComponent,
   CarListComponent,
+  Advertising_space,
+  NewsCard
   },
   data() {
     return {
@@ -69,48 +75,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.car-list-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
 
-.car-card {
-  width: 200px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.car-image img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.car-details {
-  margin-top: 10px;
-}
-
-.car-price {
-  font-size: 18px;
-  color: #4caf50;
-}
-
-.view-details {
-  background-color: #4caf50;
-  color: white;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.view-details:hover {
-  background-color: #45a049;
-}
-</style>
