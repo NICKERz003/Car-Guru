@@ -1,14 +1,19 @@
 <template>
   <div class="profile-container">
+    <h1>โปรไฟล์ปัจจุบันของคุณ</h1>
+    <div v-if="user">
+      <p><strong>ชื่อผู้ใช้:</strong> {{ user.username }}</p>
+      <p><strong>อีเมล:</strong> {{ user.email }}</p>
+    </div>
     <h1>แก้ไขโปรไฟล์ของคุณ</h1>
     <form @submit.prevent="updateProfile">
       <div class="input-group">
         <label for="username">ชื่อผู้ใช้:</label>
-        <input type="text" id="username" v-model="username" required :placeholder="username" />
+        <input type="text" id="username"  v-model="username" required  />
       </div>
       <div class="input-group">
         <label for="email">อีเมล:</label>
-        <input type="email" id="email" v-model="email" required :placeholder="email" />
+        <input type="email" id="email"  v-model="email" required />
       </div>
       <div class="input-group">
         <label for="password">รหัสผ่าน:</label>
@@ -28,6 +33,7 @@ export default {
       username: '',  // ชื่อผู้ใช้ที่ดึงมาจาก API
       email: '',
       password: '',
+      user: '',
     };
   },
   mounted() {
@@ -37,10 +43,23 @@ export default {
   methods: {
     async fetchUserProfile() {
       try {
-        const response = await axios.get('http://localhost:8000/profile');
+        const token = localStorage.getItem('authToken'); // ดึง Token จาก localStorage
+      if (!token) {
+        alert('กรุณาล็อกอินก่อน');
+        return;
+      }
+        const response = await axios.get('http://localhost:8000/profile',{
+          headers: {
+            Authorization: `Bearer ${token}`, // ส่ง token ไปใน headers
+          },
+        });
+        // ตั้งค่าข้อมูลผู้ใช้จาก API
+        this.user = response.data.profile;
+
         const user = response.data.profile;
         this.username = user.username;  // ตั้งค่าชื่อผู้ใช้เริ่มต้น
         this.email = user.email;        // ตั้งค่าอีเมลเริ่มต้น
+        
       } catch (error) {
         console.error('Error fetching user profile', error);
       }
@@ -52,6 +71,12 @@ export default {
         return;
       }
       try {
+        // ลองตรวจสอบค่าที่ส่งไปยัง API
+    console.log("Updating profile with data:", {
+      username: this.username,
+      email: this.email,
+      password: this.password,
+    });
         const response = await axios.put('http://localhost:8000/profile', {
           username: this.username,
           email: this.email,
@@ -63,7 +88,6 @@ export default {
         });
 
         alert(response.data.message); // แสดงข้อความที่ได้จาก API
-
       } catch (error) {
         console.error('Error updating profile', error);
         alert('เกิดข้อผิดพลาดในการอัปเดตโปรไฟล์');
