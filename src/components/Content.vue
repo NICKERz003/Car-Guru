@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import Image_slide1 from './Homepage/Image_slide1.vue';
-import Image_slide2 from './Homepage/Image_slide2.vue';
-import Image_slide3 from './Homepage/Image_slide3.vue';
-import BrandCar from './Homepage/ฺBrandCar.vue';
+import Image_slide1 from './Homepage_component/Image_slide1.vue';
+import Image_slide2 from './Homepage_component/Image_slide2.vue';
+import Image_slide3 from './Homepage_component/Image_slide3.vue';
+import BrandCar from './Homepage_component/ฺBrandCar.vue';
 import NewsCard from './NewsCard.vue';
 
 export default {

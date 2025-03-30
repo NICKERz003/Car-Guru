@@ -39,7 +39,7 @@ export default {
         this.errorMessage = '';
         
         // ส่งคำขอล็อกอินไปที่ API
-        const response = await axios.post('/api/login', {
+        const response = await axios.post('http://localhost:8000/login', {
           email: this.email,
           password: this.password,
         });
@@ -48,7 +48,7 @@ export default {
         localStorage.setItem('authToken', response.data.token);
         
         // เปลี่ยนเส้นทางไปยังหน้า Dashboard
-        this.$router.push('/dashboard');
+        this.$router.push('/');
       } catch (error) {
         // หากเกิดข้อผิดพลาด, แสดงข้อความผิดพลาด
         if (error.response && error.response.data) {
@@ -58,6 +58,28 @@ export default {
         }
       }
     },
+    async checkLoginStatus() {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        try {
+          // ส่งคำขอตรวจสอบ token กับ server
+           await axios.get('http://localhost:8000/verifyToken', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          // ถ้า response สำเร็จ แสดงว่าผู้ใช้ยังสามารถใช้งานได้
+          this.isLoggedIn = true;
+        } catch (error) {
+          // ถ้า token ไม่ถูกต้อง หรือตรวจสอบแล้วผิดพลาด
+          console.error("Token verification failed:", error);
+          localStorage.removeItem('authToken');
+          this.isLoggedIn = false;
+        }
+      } else {
+        this.isLoggedIn = false;
+      }
+    }
   },
 };
 </script>

@@ -9,8 +9,8 @@
 
 <script>
 import axios from 'axios';
-import FilterComponent from './Carlistpage/FilterComponent.vue';
-import CarListComponent from './Carlistpage/CarListComponent.vue';
+import FilterComponent from './Carlistpage_component/FilterComponent.vue';
+import CarListComponent from './Carlistpage_component/CarListComponent.vue';
 import Advertising_space from './Advertising_space.vue';
 import NewsCard from './NewsCard.vue';
 export default {

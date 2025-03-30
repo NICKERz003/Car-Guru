@@ -26,7 +26,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: 'RegisterPage',
@@ -39,35 +39,35 @@ export default {
       errorMessage: '', // ใช้สำหรับแสดงข้อความผิดพลาด
     };
   },
-//   methods: {
-//     // ฟังก์ชันที่ทำงานเมื่อกดปุ่ม "สมัครสมาชิก"
-//     async handleSubmit() {
-//       // ตรวจสอบว่ารหัสผ่านและยืนยันรหัสผ่านตรงกันหรือไม่
-//       if (this.password !== this.confirmPassword) {
-//         this.errorMessage = 'รหัสผ่านไม่ตรงกัน';
-//         return;
-//       }
+  methods: {
+    // ฟังก์ชันที่ทำงานเมื่อกดปุ่ม "สมัครสมาชิก"
+    async handleSubmit() {
+      // ตรวจสอบว่ารหัสผ่านและยืนยันรหัสผ่านตรงกันหรือไม่
+      if (this.password !== this.confirmPassword) {
+        this.errorMessage = 'รหัสผ่านไม่ตรงกัน';
+        return;
+      }
 
-//       try {
-//         // ส่งคำขอลงทะเบียนไปที่ API
-//         const response = await axios.post('/api/register', {
-//           email: this.email,
-//           username: this.username,
-//           password: this.password,
-//         });
+      try {
+        // ส่งคำขอลงทะเบียนไปที่ API
+        await axios.post('http://localhost:8000/register', {
+          email: this.email,
+          username: this.username,
+          password: this.password,
+        });
 
-//         // หากสมัครสมาชิกสำเร็จ, เปลี่ยนเส้นทางไปที่หน้า login
-//         this.$router.push('/login');
-//       } catch (error) {
-//         // หากเกิดข้อผิดพลาดจากเซิร์ฟเวอร์
-//         if (error.response && error.response.data) {
-//           this.errorMessage = error.response.data.message || 'การลงทะเบียนล้มเหลว';
-//         } else {
-//           this.errorMessage = 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้';
-//         }
-//       }
-//     },
-//   },
+        // หากสมัครสมาชิกสำเร็จ, เปลี่ยนเส้นทางไปที่หน้า login
+        this.$router.push('/login-page');
+      } catch (error) {
+        // หากเกิดข้อผิดพลาดจากเซิร์ฟเวอร์
+        if (error.response && error.response.data) {
+          this.errorMessage = error.response.data.message || 'การลงทะเบียนล้มเหลว';
+        } else {
+          this.errorMessage = 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้';
+        }
+      }
+    },
+  },
 };
 </script>
 

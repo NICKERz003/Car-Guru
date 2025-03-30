@@ -1,30 +1,78 @@
-<!-- Header.vue -->
 <template>
-<section id="header">
+  <section id="header">
     <div class="logo">
       <img src="@/assets/logo_car-guru.png" alt="Car Guru Logo" width="80" height="80">
     </div>
-      <div class="search-box">
+    <div class="search-box">
       <form action="/action_page.php">
         <input type="text" placeholder="Search..." name="search" >
-        <button  type="submit">Search</button>
+        <button type="submit">Search</button>
       </form>
     </div>
     <div class="box-right">
-      <LoginBtn></LoginBtn>
+      <!-- ตรวจสอบว่าผู้ใช้ล็อกอินหรือไม่ -->
+      <div v-if="isLoggedIn" class="buttons">
+        <ProfileBtn />
+        <button @click="logout" class="logout-button"><i class="fas fa-sign-out-alt"></i></button>
+      </div>
+      <LoginBtn v-else />
     </div>
- </section>
+  </section>
 </template>
 
 <script>
+import axios from 'axios';  // เพิ่มการนำเข้า axios
 import LoginBtn from './LoginBtn.vue';
+import ProfileBtn from './ProfileBtn.vue';
+
 export default {
   name: 'AppHeader',
-  components:{
-    LoginBtn
+  components: {
+    LoginBtn,
+    ProfileBtn
+  },
+  data() {
+    return {
+      // ตรวจสอบสถานะการล็อกอินจาก localStorage
+      isLoggedIn: false
+    };
+  },
+  created() {
+    this.checkLoginStatus(); // เมื่อ component ถูกโหลดจะตรวจสอบสถานะการล็อกอิน
+  },
+  methods: {
+    checkLoginStatus() {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        axios.get('http://localhost:8000/verifyToken', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then(() => {
+            // Token valid, set logged in status to true
+            this.isLoggedIn = true;
+          })
+          .catch(() => {
+            // Token invalid, remove it and set logged out
+            localStorage.removeItem('authToken');
+            this.isLoggedIn = false;
+          });
+      } else {
+        this.isLoggedIn = false;
+      }
+    },
+    logout() {
+      // เมื่อ logout, ลบ token ออกจาก localStorage
+      localStorage.removeItem('authToken');
+      this.isLoggedIn = false; // เปลี่ยนสถานะการล็อกอินเป็น false
+      // อาจจะเปลี่ยนเส้นทางไปหน้า login หรือหน้าอื่นๆ หลังจาก logout
+      this.$router.push('/'); 
+    }
   }
-}
+};
 </script>
+
 <style scoped>
 #header {
   display: flex;
@@ -37,13 +85,12 @@ export default {
 }
 
 img {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .logo {
   align-items: center;
   padding: 10px;
-  /* border: 1px solid #ccc; */
 }
 
 .search-box {
@@ -55,7 +102,7 @@ img {
   border-radius: 60px;
 }
 
-.search-box input{
+.search-box input {
   background: transparent;
   flex: 1;
   border: 0;
@@ -69,7 +116,7 @@ img {
   color: #cac7ff;
 }
 
-.search-box button{
+.search-box button {
   background: #e7e7e7;
   border: 0;
   padding: 10px 25px;
@@ -80,32 +127,33 @@ img {
   transition: 0.2s;
 }
 
-.search-box button:hover{
+.search-box button:hover {
   background: #bbbbbb;
 }
 
-.box-right{
-  padding: 10px;
-  /* border: 1px solid #ccc; */
+.box-right {
+   padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.login-button{
-  background-color: #e7e7e7;
-  border: 1px solid #e7e7e7;
-  border-radius: 80px;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+.buttons {
+  display: flex; 
+  gap: 10px; 
+}
+.logout-button {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
 
-.login-button:hover {
+.logout-button:hover {
+  background-color: red;
+  color: white;
   border: 1px solid #555555;
   box-shadow: 2px 4px 4px #c7c7c7;
 }
-</style> 
+</style>

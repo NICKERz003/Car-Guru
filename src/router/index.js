@@ -8,6 +8,7 @@ import UpdateNews from '@/components/UpdateNews.vue';
 import Register from '@/components/Register.vue';
 import BrandPage from '@/components/BrandPage.vue';
 import CarlistPage from '@/components/Carlist.vue';
+import ProfileEditPage from '@/components/ProfileEditPage.vue';
 
 
 
@@ -19,6 +20,7 @@ const routes = [
     { path: '/car-comparison', component: CarComparison },
     { path: '/loan-calculator', component: LoanCalculator },
     { path: '/Update-News', component: UpdateNews },
+    { path: '/Profile-Page', component: ProfileEditPage },
     // path หน้า login
     { path: '/login-page', component: LoginPage, meta: { noHeader: true, noFooter: true } },
     { path: '/register-page', component: Register, meta: { noHeader: true, noFooter: true } },

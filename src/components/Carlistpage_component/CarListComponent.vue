@@ -1,4 +1,5 @@
 <template>
+  
   <div class="car-list">
     <div class="car-cards">
       <!-- การแสดงการ์ดรถยนต์ -->
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+
 export default {
   props: ['cars', 'filters'],
   data() {
@@ -34,6 +36,7 @@ export default {
       currentPage: 1,
       itemsPerPage: 20,  // แสดงการ์ด 20 อันในแต่ละหน้า
     };
+    
   },
   computed: {
     filteredCars() {
