@@ -9,6 +9,10 @@ import Register from '@/components/Register.vue';
 import BrandPage from '@/components/BrandPage.vue';
 import CarlistPage from '@/components/Carlist.vue';
 import ProfileEditPage from '@/components/ProfileEditPage.vue';
+import ElectricCar from '@/components/ElectricCar.vue';
+import PopularCar from '@/components/PopularCar.vue';
+import NewCar from '@/components/ฺNewCar.vue';
+
 
 
 
@@ -26,6 +30,9 @@ const routes = [
     { path: '/register-page', component: Register, meta: { noHeader: true, noFooter: true } },
 
     { path: '/car-detail/:id', component: CarDetail, props: true },
+    { path: '/car-detail/ElectricCar/:id', component: ElectricCar, props: true },
+    { path: '/car-detail/PopularCar/:id', component: PopularCar, props: true },
+    { path: '/car-detail/DetailNewCar/:id', component: NewCar, props: true },
 
     { path: '/brand/:brandName', component: BrandPage, props: true },
 

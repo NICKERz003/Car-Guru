@@ -1,5 +1,5 @@
 <template>
-<div class="head_slide"><h1>รถยนต์ไฟฟ้า</h1></div>
+<div class="head_slide"><h1>รถยนต์ที่มาใหม่ในไทย</h1></div>
     <div class="car-container">
       <!-- การ์ดรถ -->
       <div class="car-list-container" :style="{ transform: 'translateX(' + (-currentIndex *235) + 'px)' }">
@@ -11,7 +11,7 @@
             <h3>{{ car.brand }} {{ car.model }}</h3>
             <p class="car-price">฿{{ car.price.toLocaleString() }}</p>
             <p class="car-description">{{ car.description }}</p>
-            <router-link :to="'/car-detail/' + car.id"><button class="view-details">ดูรายละเอียด</button></router-link>
+            <router-link :to="'/car-detail/DetailNewCar/' + car.id"><button class="view-details">ดูรายละเอียด</button></router-link>
           </div>
         </div>
       </div>
@@ -28,57 +28,48 @@ export default {
   data() {
     return {
       cars: [
-        {
-          id: 1,
-          image: 'https://via.placeholder.com/200x150?text=Car+1',
-          brand: 'Mercedes',
-          model: 'G-Class Electric',
-          price: 949900,
-          description: 'พบกับราคานี้ในประเทศไทย',
-        },
-        {
-          id: 2,
-          image: 'https://via.placeholder.com/200x150?text=Car+2',
-          brand: 'BYD',
-          model: 'S5 EV',
-          price: 849900,
-          description: 'รถไฟฟ้าราคาเยี่ยม',
-        },
-        {
-          id: 3,
-          image: 'https://via.placeholder.com/200x150?text=Car+3',
-          brand: 'BYD',
-          model: 'IM6',
-          price: 1799000,
-          description: 'รถไฟฟ้า สำหรับคนรักสิ่งแวดล้อม',
-        },
-        {
-          id: 4,
-          image: 'https://via.placeholder.com/200x150?text=Car+4',
-          brand: 'Geely',
-          model: 'EX5',
-          price: 1599000,
-          description: 'พร้อมราคาสุดคุ้ม',
-        },
-        {
-          id: 5,
-          image: 'https://via.placeholder.com/200x150?text=Car+5',
-          brand: 'Porsche',
-          model: 'Panamera 4 E-Hybrid',
-          price:  7990000,
-          description: 'รถสปอร์ตสุดหรู',
-        },
-        {
-          id: 6,
-          image: 'https://via.placeholder.com/200x150?text=Car+6',
-          brand: 'BMW',
-          model: 'M3 Competition Sedan',
-          price: 14899000,
-          description: 'พร้อมราคาสุดคุ้ม',
-        },
-        
-        
-        
+        { 
+        id: 1, 
+        image: 'https://mpics.mgronline.com/pics/Images/568000002700501.JPEG', 
+        brand: 'Mitsubishi', 
+        model: 'XFORCE HEV', 
+        price: 899000, 
+        description: 'รถยนต์ SUV ไฮบริด' },
+        { 
+        id: 2, 
+        image: 'https://krungsrimarket.cjdataservice.com/uploads/articles/article_content_1bc.jpg', 
+        brand: 'Nissan', 
+        model: 'Serena e-POWER', 
+        price: 'N/A', 
+        description: 'รถยนต์ MPV ไฮบริด' },
+        { 
+        id: 3, 
+        image: 'https://cdn.wheel-size.com/thumbs/d3/97/d397b9de6255f8a9a881236ce1b82253.jpg', 
+        brand: 'Zeekr', 
+        model: '009', 
+        price: 3099000, 
+        description: 'MPV ไฟฟ้าระดับพรีเมียม' },
+        { 
+        id: 4, 
+        image: 'https://autostation.com/wp-content/uploads/2025/03/05-DEEPAL-S05-1-scaled.jpg', 
+        brand: 'Deepal', 
+        model: 'S05 2025', 
+        price: 'N/A', 
+        description: 'SUV ขนาดกลาง' },
+        { 
+        id: 5, 
+        image: 'https://www.omodajaecoo.co.th/v2/images/Ultimate-Mint-green-with-black-roof.png', 
+        brand: 'OMODA', 
+        model: 'C5 EV', 
+        price: 899000, 
+        description: 'Compact Crossover SUV' },
+        { 
+        id: 6, 
+        image: 'https://www.headlightmag.com/hlmwp/wp-content/uploads/2024/11/Sealion7_Exterior-9.jpg', 
+        brand: 'BYD', 
+        model: 'SEALION 7', 
+        price: 1200000, 
+        description: ' C-SUV สปอร์ตไฟฟ้า' },
       ],
       currentIndex: -1,
     };

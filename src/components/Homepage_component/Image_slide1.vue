@@ -1,5 +1,5 @@
 <template>
-<div class="head_slide"><h1>รถยนต์มาใหม่ในไทย</h1></div>
+<div class="head_slide"><h1>รถยนต์ไฟฟ้า</h1></div>
     <div class="car-container">
       <!-- การ์ดรถ -->
       <div class="car-list-container" :style="{ transform: 'translateX(' + (-currentIndex *235) + 'px)' }">
@@ -11,7 +11,7 @@
             <h3>{{ car.brand }} {{ car.model }}</h3>
             <p class="car-price">฿{{ car.price.toLocaleString() }}</p>
             <p class="car-description">{{ car.description }}</p>
-            <router-link :to="'/car-detail/' + car.id"><button class="view-details">ดูรายละเอียด</button></router-link>
+            <router-link :to="'/car-detail/ElectricCar/' + car.id"><button class="view-details">ดูรายละเอียด</button></router-link>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@ export default {
       cars: [
         {
           id: 1,
-          image: 'https://via.placeholder.com/200x150?text=Car+1',
+          image: 'https://www.mercedes-benz.co.th/content/dam/hq/passengercars/cars/g-class/n465-pi/overview/exterior/03-2024/images/mercedes-benz-g-class-n465-exterior-protectivestrips-2176x1224-03-2024.jpg/1740019670643.jpg?im=Crop,rect=(0,0,2176,1224);Resize=(1280)',
           brand: 'Mercedes',
           model: 'G-Class Electric',
           price: 949900,
@@ -38,7 +38,7 @@ export default {
         },
         {
           id: 2,
-          image: 'https://via.placeholder.com/200x150?text=Car+2',
+          image: 'https://autolifethailand.tv/wp-content/uploads/2025/03/MG_S5_EV_TH_001-1.jpg',
           brand: 'BYD',
           model: 'S5 EV',
           price: 849900,
@@ -46,7 +46,7 @@ export default {
         },
         {
           id: 3,
-          image: 'https://via.placeholder.com/200x150?text=Car+3',
+          image: 'https://autolifethailand.tv/wp-content/uploads/2025/02/MG_IM6_TH_014.jpg',
           brand: 'BYD',
           model: 'IM6',
           price: 1799000,
@@ -54,27 +54,27 @@ export default {
         },
         {
           id: 4,
-          image: 'https://via.placeholder.com/200x150?text=Car+4',
+          image: 'https://autolifethailand.tv/wp-content/uploads/2024/11/GEELY_EX5_TH_001-1.jpg',
           brand: 'Geely',
           model: 'EX5',
-          price: 1599000,
+          price: 949000,
           description: 'พร้อมราคาสุดคุ้ม',
         },
         {
           id: 5,
-          image: 'https://via.placeholder.com/200x150?text=Car+5',
-          brand: 'Porsche',
-          model: 'Panamera 4 E-Hybrid',
-          price:  7990000,
-          description: 'รถสปอร์ตสุดหรู',
+          image: 'https://s359.kapook.com//pagebuilder/98da6012-eb4b-417e-b333-c8e32c0762dd.jpg',
+          brand: 'MG',
+          model: 'ES',
+          price: 959000 ,
+          description: 'ผสานความเป็น EV มีฟังก์ชันที่ครบครัน',
         },
         {
           id: 6,
-          image: 'https://via.placeholder.com/200x150?text=Car+6',
-          brand: 'BMW',
-          model: 'M3 Competition Sedan',
-          price: 14899000,
-          description: 'พร้อมราคาสุดคุ้ม',
+          image: 'https://s359.kapook.com//pagebuilder/090c5dee-265c-4aa4-ae2d-8d74073a4d4d.jpg',
+          brand: 'GWM',
+          model: 'ORA Good Cat',
+          price: 899000,
+          description: 'ดีไซน์น่ารักเป็นเอกลักษณ์',
         },
         
         
