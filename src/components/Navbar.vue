@@ -3,10 +3,10 @@
   <div>
     <router-link to ="/"><button class="nav-button" >หน้าหลัก</button></router-link>
 
-  <div class="dropdown">
+  <!-- <div class="dropdown"> -->
     <router-link to ="/car-list"><button class="nav-button">รถยนต์</button></router-link>
-    <div class="dropdown-content">
-      <button @click="navigateTo('/Toyata-brand')" class="dropdown-item">• Toyota</button>
+    <!-- <div class="dropdown-content"> -->
+      <!-- <button @click="navigateTo('/Toyata-brand')" class="dropdown-item">• Toyota</button>
         <button @click="navigateTo('/Isuzu-brand')" class="dropdown-item">• Isuzu</button>
         <button @click="navigateTo('/Honda-brand')" class="dropdown-item">• Honda</button>
         <button @click="navigateTo('/Mitsubishi-brand')" class="dropdown-item">• Mitsubishi</button>
@@ -23,7 +23,7 @@
         <button @click="navigateTo('/Mercedes-Benz-brand')" class="dropdown-item">• Mercedes-Benz</button>
 
     </div>
-  </div>
+  </div> -->
 
     <router-link to ="/car-comparison"><button class="nav-button" >เปรียบเทียบรถยนต์</button></router-link>
     <router-link to ="/loan-calculator"><button class="nav-button" >คำนวณการผ่อนชำระ</button></router-link>

@@ -7,23 +7,25 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 require('dotenv').config();  // โหลดค่าจากไฟล์ .env
 
-app.use(cors());
+app.use(cors({}));
 app.use(express.json());  // parse JSON request
 app.use(express.urlencoded({ extended: true }));  // parse URL-encoded data
 
-let users = [];
 const port = 8000;
 
-let conn = null;
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'db_projectse',
+    waitForConnections: true,
+    connectionLimit: 10,  // จำนวนการเชื่อมต่อสูงสุด
+    queueLimit: 0,
+});
 
 const initMySQL = async () => {
     try {
-        conn = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'root',
-            database: 'db_projectse',
-        });
+        await pool.getConnection(); // ใช้ pool เชื่อมต่อฐานข้อมูล
         console.log("MySQL connection established successfully");
     } catch (error) {
         console.error("Error connecting to MySQL:", error.message);
@@ -49,7 +51,7 @@ app.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Insert user into the database
-        await conn.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword]);
+        await pool.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword]);
 
         res.status(201).json({ message: 'ลงทะเบียนสำเร็จ' });
     } catch (error) {
@@ -82,7 +84,7 @@ app.post('/login', async (req, res) => {
             // Create JWT token
             const token = jwt.sign({ userId: user.id, email: user.email }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-            return res.status(200).json({ message: 'เข้าสู่ระบบสำเร็จ', token });  // ส่งผลลัพธ์เพียงครั้งเดียว
+            return res.status(200).json({ message: 'เข้าสู่ระบบสำเร็จ', token });
         } else {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
@@ -114,11 +116,9 @@ function authenticateToken(req, res, next) {
 // ใช้ middleware ตรวจสอบ token สำหรับเส้นทางที่ต้องการการยืนยันตัวตน
 app.use('/profile', authenticateToken);
 
-
 app.get('/verifyToken', authenticateToken, (req, res) => {
     res.status(200).json({ message: 'Token is valid' });
 });
-
 
 // Profile API
 app.get('/profile', authenticateToken, async (req, res) => {
@@ -169,36 +169,79 @@ app.put('/profile', async (req, res) => {
     }
 });
 
+// API cars filter
+app.get('/cars', async (req, res) => {
+    const { brand, model, price, page = 1 } = req.query;  // รับค่าจาก query string
+    const itemsPerPage = 20;  // จำนวนรายการต่อหน้า
+    // สร้างเงื่อนไขการกรอง
+    let query = 'SELECT * FROM cars WHERE 1=1';
+    const params = [];
 
-
-
-const closeConnection = async () => {
-    if (conn) {
-        await conn.end();
+    if (brand) {
+        query += ' AND brand = ?';
+        params.push(brand);
     }
-};
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'db_projectse',
-    waitForConnections: true,
-    connectionLimit: 10,  // จำนวนการเชื่อมต่อสูงสุด
-    queueLimit: 0,
+    if (model) {
+        query += ' AND model = ?';
+        params.push(model);
+    }
+
+    if (price) {
+        const [minPrice, maxPrice] = price.split('-').map(Number);
+        if (isNaN(minPrice)) {
+            return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
+        }
+
+        if (maxPrice && isNaN(maxPrice)) {
+            return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
+        }
+
+        if (maxPrice) {
+            query += ' AND price BETWEEN ? AND ?';
+            params.push(minPrice, maxPrice);
+        } else {
+            query += ' AND price >= ?';
+            params.push(minPrice);
+        }
+    }
+
+    try {
+        const [results] = await pool.query(query, params);
+        res.json(results);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error fetching cars' });
+    }
+
 });
 
-app.get('/testNewDB', async (req, res) => {
+app.get('/cars/brands', async (req, res) => {
     try {
-        const results = await pool.query('SELECT * FROM users')
-        res.json(results)
+        // ดึงข้อมูลแบรนด์จากฐานข้อมูล
+        const [rows] = await pool.query('SELECT DISTINCT brand FROM cars');
+        res.json(rows);
     } catch (error) {
-        console.error('Error fetching users:', error.message)
-        res.status(500).json({ error: 'Error fetching users' })
+        console.error('Error fetching brands:', error);
+        res.status(500).json({ message: 'Error fetching brands' });
     }
-})
+});
 
-app.listen(port, async (req, res) => {
+app.get('/cars/models/:brand', async (req, res) => {
+    const { brand } = req.params;
+    try {
+        // ดึงข้อมูลรุ่นจากฐานข้อมูลตามแบรนด์
+        const [rows] = await pool.query('SELECT DISTINCT model FROM cars WHERE brand = ?', [brand]);
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching models:', error);
+        res.status(500).json({ message: 'Error fetching models' });
+    }
+});
+
+
+
+app.listen(port, async () => {
     await initMySQL();
     console.log('http server running  ' + port);
 });

@@ -35,12 +35,6 @@ export default {
                     image: "https://autolifethailand.tv/wp-content/uploads/2025/03/Lexus-RZ_1.jpg",
                     link: "/news3"
                 },
-                {
-                    title: "รีวิวรถสปอร์ตสุดหรูแห่งปี 2024",
-                    description: "มาดูรีวิวรถสปอร์ตสุดหรูที่ได้รับความนิยมมากที่สุดในปีนี้...",
-                    image: "https://example.com/sport-car.jpg",
-                    link: "/news4"
-                }
             ]
         };
     }

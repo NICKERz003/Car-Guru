@@ -2,7 +2,7 @@
     <div class="car-container">
       <div class="car-info-header">
         <h1>{{ carName }}</h1>
-        <p class="car-price">ราคา: ฿1,699,000</p>
+        <p class="car-price">ราคา: {{ carPrice }}</p>
       </div>
   
       <div class="main-image-container">
@@ -33,16 +33,16 @@
       <div class="car-article">
         <h2>{{ carName }}</h2>
         <p>
-          {{ carDescription }} เป็นรถยนต์ MPV อเนกประสงค์ที่มาพร้อมกับเทคโนโลยี e-POWER อันเป็นเอกลักษณ์ของ Nissan
-          มอบประสบการณ์การขับขี่ที่นุ่มนวล เงียบ และประหยัดน้ำมัน พร้อมดีไซน์ภายนอกและภายในที่ทันสมัยและกว้างขวาง
+          {{ carDescription }} เป็นรถยนต์ไฟฟ้า 5 ประตูขนาดเล็ก ที่โดดเด่นด้วยดีไซน์ทันสมัย
+          ห้องโดยสารกว้างขวาง และเทคโนโลยีที่น่าสนใจ เหมาะสำหรับการใช้งานในเมืองเป็นหลัก
         </p>
         <p>
-          เทคโนโลยี e-POWER ใน {{ carName }} ทำงานโดยใช้เครื่องยนต์เบนซินขนาดเล็กเพื่อสร้างกระแสไฟฟ้าไปขับเคลื่อนมอเตอร์ไฟฟ้า
-          ทำให้ได้อัตราเร่งที่ราบรื่นและต่อเนื่อง เหมือนรถยนต์ไฟฟ้า แต่ไม่ต้องกังวลเรื่องการชาร์จไฟ
+          {{ carName }} ขับเคลื่อนด้วยมอเตอร์ไฟฟ้า ให้อัตราเร่งที่ดีและเงียบสงบ
+          พร้อมแบตเตอรี่ที่ให้ระยะทางวิ่งที่เหมาะสมกับการใช้งานในชีวิตประจำวัน
         </p>
         <p>
-          ภายในห้องโดยสารของ {{ carName }} ออกแบบมาเพื่อความสะดวกสบายสูงสุดของผู้โดยสารทุกที่นั่ง
-          มีพื้นที่กว้างขวาง เบาะนั่งปรับเปลี่ยนได้หลากหลายรูปแบบ และเทคโนโลยีอำนวยความสะดวกมากมาย
+          ภายในห้องโดยสารของ {{ carName }} ออกแบบมาเพื่อความสะดวกสบายของผู้ขับขี่และผู้โดยสาร
+          พร้อมอุปกรณ์อำนวยความสะดวกและระบบความปลอดภัยที่ครบครัน
         </p>
   
         <div class="table-section">
@@ -53,7 +53,7 @@
             <tbody>
               <tr>
                 <td>แบรนด์</td>
-                <td>Nissan</td>
+                <td>BYD</td>
               </tr>
               <tr>
                 <td>รุ่น</td>
@@ -61,15 +61,19 @@
               </tr>
               <tr>
                 <td>ประเภทรถ</td>
-                <td>รถยนต์ MPV</td>
+                <td>รถยนต์ไฟฟ้า</td>
               </tr>
               <tr>
                 <td>ปีที่เปิดตัว</td>
-                <td>2024</td>
+                <td>2023 (ในประเทศไทย)</td>
               </tr>
               <tr>
-                <td>ราคา</td>
+                <td>ราคาเริ่มต้น</td>
                 <td>{{ carPrice }}</td>
+              </tr>
+              <tr>
+                <td>จำนวนที่นั่ง</td>
+                <td>5 ที่นั่ง</td>
               </tr>
             </tbody>
           </table>
@@ -77,53 +81,53 @@
   
         <div class="table-section">
           <div class="table-header">
-            <h3>สเปค</h3>
+            <h3>สเปค (รุ่น Extended Range)</h3>
           </div>
           <table class="special-table">
             <tbody>
               <tr>
                 <td>ระบบขับเคลื่อน:</td>
-                <td>e-POWER</td>
+                <td>ขับเคลื่อนล้อหน้า (FWD)</td>
               </tr>
               <tr>
                 <td>เครื่องยนต์:</td>
-                <td>HR12DE เบนซิน 3 สูบ DOHC 12 วาล์ว</td>
+                <td>N/A</td>
               </tr>
               <tr>
                 <td>ความจุเครื่องยนต์ (CC):</td>
-                <td>1,198 CC</td>
+                <td>N/A</td>
               </tr>
               <tr>
                 <td>มอเตอร์ไฟฟ้า:</td>
-                <td>EM57</td>
+                <td>Permanent Magnet Synchronous Motor</td>
               </tr>
               <tr>
                 <td>กำลังมอเตอร์ไฟฟ้าสูงสุด:</td>
-                <td>100 kW (136 PS)</td>
+                <td>150 กิโลวัตต์ (204 แรงม้า)</td>
               </tr>
               <tr>
                 <td>แรงบิดมอเตอร์ไฟฟ้าสูงสุด:</td>
-                <td>320 นิวตัน-เมตร</td>
+                <td>310 นิวตัน-เมตร</td>
               </tr>
               <tr>
                 <td>ระบบเกียร์:</td>
-                <td>อัตโนมัติ (Single Speed Reduction Gear)</td>
+                <td>อัตโนมัติ</td>
               </tr>
               <tr>
                 <td>ขนาด (ยาว x กว้าง x สูง):</td>
-                <td>4,690 x 1,695 x 1,870 มม.</td>
+                <td>4,290 x 1,770 x 1,570 มม.</td>
               </tr>
               <tr>
                 <td>ความจุถังน้ำมัน:</td>
-                <td>55 ลิตร</td>
+                <td>N/A</td>
               </tr>
               <tr>
-                <td>ระบบเบรก:</td>
-                <td>ดิสก์เบรก (หน้า), ดรัมเบรก (หลัง) พร้อม ABS, EBD, BA</td>
+                <td>ระบบเบรก (หน้า/หลัง):</td>
+                <td>ดิสก์เบรก/ดิสก์เบรก</td>
               </tr>
               <tr>
                 <td>ยาง:</td>
-                <td>195/65 R15</td>
+                <td>205/50 R17</td>
               </tr>
               <tr>
               </tr>
@@ -132,8 +136,8 @@
         </div>
   
         <p class="disclaimer">
-          คำแนะนำการใช้ข้อมูล: ภาพที่แสดงเป็นเพียงภาพประกอบ และข้อมูลรวมถึงราคาอาจมีการเปลี่ยนแปลง
-          ดังนั้นโปรดสอบถามรายละเอียดของสินค้ากับบริษัทและผู้จำหน่ายทุกครั้งก่อนตัดสินใจ
+          คำแนะนำการใช้ข้อมูล: ข้อมูลที่แสดงเป็นข้อมูลเบื้องต้นสำหรับรุ่น
+          สเปคและราคาอาจแตกต่างกันไปในแต่ละรุ่นย่อย โปรดสอบถามรายละเอียดเพิ่มเติมจากผู้จำหน่าย BYD อย่างเป็นทางการ
         </p>
       </div>
     </div>
@@ -143,15 +147,15 @@
   export default {
     data() {
       return {
-        carName: "Nissan Serena e-POWER",
-        carDescription: "MPV อเนกประสงค์ พร้อมเทคโนโลยี e-POWER",
-        carPrice: "฿1,699,000",
+        carName: "BYD Dolphin",
+        carDescription: "รถยนต์ไฟฟ้า 5 ประตูขนาดเล็ก",
+        carPrice: " ฿600,000",
         carImages: [
-          "https://krungsrimarket.cjdataservice.com/uploads/articles/article_content_1bc.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/interior/10/88/nissan-serena-dashboard-view-165700.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/interior/10/88/nissan-serena-rd-row-seat-855034.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/exterior/10/88/nissan-serena-side-view-694696.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/interior/10/88/nissan-serena-airbags-view-180199.jpg"
+          "https://www.reverautomotive.com/_next/image?url=%2Fimages%2Fmodel%2Fnew-dolphin%2Foverview%2Fsolution%2Fexterior%2Fsurge.jpg&w=1080&q=100", // ตัวอย่างภาพ
+          "https://www.reverautomotive.com/_next/image?url=%2Fimages%2Fmodel%2Fnew-dolphin%2Foverview%2Fsolution%2Fexterior%2Fled-tail-light.jpg&w=1080&q=100",
+          "https://www.reverautomotive.com/_next/image?url=%2Fimages%2Fmodel%2Fnew-dolphin%2Foverview%2Fsolution%2Fexterior%2Fnfc.jpg&w=1080&q=100",
+          "https://www.reverautomotive.com/_next/image?url=%2Fimages%2Fmodel%2Fnew-dolphin%2Foverview%2Fsolution%2Fexterior%2Frainproof.jpg&w=1080&q=100",
+          "https://www.reverautomotive.com/_next/image?url=%2Fimages%2Fmodel%2Fnew-dolphin%2Foverview%2Fsolution%2Fexterior%2Falloy-wheel.jpg&w=1080&q=100"
         ],
         currentImage: 0
       };
@@ -297,7 +301,7 @@
   }
   
   .table-header h3 {
-    color: #4caf50; /* เปลี่ยนสีหัวข้อเป็นสีเขียว */
+    color: #4caf50;
     margin: 0;
     font-size: 1.1em; /* ปรับขนาดตัวอักษรเล็กน้อย */
   }

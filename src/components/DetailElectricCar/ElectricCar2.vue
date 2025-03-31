@@ -2,7 +2,8 @@
     <div class="car-container">
       <div class="car-info-header">
         <h1>{{ carName }}</h1>
-        <p class="car-price">ราคา: ฿899,000</p>
+        <p class="car-price">{{ carPrice }}</p>
+        <p class="car-description">{{ carDescription }}</p>
       </div>
   
       <div class="main-image-container">
@@ -33,16 +34,16 @@
       <div class="car-article">
         <h2>{{ carName }}</h2>
         <p>
-          {{ carDescription }} เป็นรถยนต์ SUV ไฟฟ้าดีไซน์สปอร์ตคูเป้ ที่มาพร้อมกับเทคโนโลยีล้ำสมัย
-          และสมรรถนะที่น่าสนใจ มุ่งเน้นการขับขี่ที่สนุกสนานและเป็นมิตรต่อสิ่งแวดล้อม
+          {{ carName }} เป็นรถยนต์ไฟฟ้าจากแบรนด์ BYD ที่มาพร้อมกับเทคโนโลยีล้ำสมัย 
+          และการออกแบบที่ทันสมัย ให้ความรู้สึกหรูหราในราคาที่จับต้องได้
         </p>
         <p>
-          {{ carName }} ขับเคลื่อนด้วยระบบไฟฟ้า 100% มอบอัตราเร่งที่รวดเร็วและเงียบสงบ
-          พร้อมแบตเตอรี่ที่ให้ระยะทางวิ่งที่เหมาะสมกับการใช้งานในเมืองและการเดินทางนอกเมือง
+          {{ carName }} ขับเคลื่อนด้วยมอเตอร์ไฟฟ้าที่ให้สมรรถนะการขับขี่ที่ราบรื่น 
+          และเป็นมิตรกับสิ่งแวดล้อม พร้อมระยะทางการขับขี่ที่ยาวไกลในหนึ่งการชาร์จ
         </p>
         <p>
-          ภายในห้องโดยสารของ {{ carName }} ออกแบบให้มีความทันสมัยและสะดวกสบาย
-          ด้วยหน้าจอแสดงผลขนาดใหญ่ ระบบอินโฟเทนเมนต์ที่ครบครัน และระบบช่วยเหลือการขับขี่ต่างๆ
+          ภายในห้องโดยสารของ {{ carName }} ออกแบบมาเพื่อความสะดวกสบาย 
+          พร้อมด้วยเทคโนโลยีและฟีเจอร์ที่ทันสมัยสำหรับผู้ขับขี่และผู้โดยสาร
         </p>
   
         <div class="table-section">
@@ -53,7 +54,7 @@
             <tbody>
               <tr>
                 <td>แบรนด์</td>
-                <td>OMODA</td>
+                <td>BYD</td>
               </tr>
               <tr>
                 <td>รุ่น</td>
@@ -61,11 +62,7 @@
               </tr>
               <tr>
                 <td>ประเภทรถ</td>
-                <td>รถยนต์ SUV ไฟฟ้า</td>
-              </tr>
-              <tr>
-                <td>ปีที่เปิดตัว</td>
-                <td>2024</td>
+                <td>รถยนต์ไฟฟ้า</td>
               </tr>
               <tr>
                 <td>ราคา</td>
@@ -83,18 +80,18 @@
             <tbody>
               <tr>
                 <td>ระบบขับเคลื่อน:</td>
-                <td>ไฟฟ้า 100% (BEV)</td>
+                <td>ไฟฟ้า</td>
               </tr>
               <tr>
                 <td>มอเตอร์ไฟฟ้า:</td>
-                <td>N/A</td>
+                <td>1 ตัว</td>
               </tr>
               <tr>
                 <td>กำลังมอเตอร์ไฟฟ้าสูงสุด:</td>
                 <td>N/A</td>
               </tr>
               <tr>
-                <td>แรงบิดสูงสุด:</td>
+                <td>แรงบิดมอเตอร์ไฟฟ้าสูงสุด:</td>
                 <td>N/A</td>
               </tr>
               <tr>
@@ -102,30 +99,19 @@
                 <td>อัตโนมัติ</td>
               </tr>
               <tr>
-                <td>แบตเตอรี่:</td>
+                <td>ระยะทางต่อการชาร์จ:</td>
                 <td>N/A</td>
               </tr>
               <tr>
-                <td>ระยะทางวิ่งสูงสุด (WLTP โดยประมาณ):</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>อัตราเร่ง 0-100 กม./ชม.:</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
-                <td>ขนาด (ยาว x กว้าง x สูง):</td>
-                <td>N/A</td>
-              </tr>
-              <tr>
+                <td>ระบบเบรก (หน้า/หลัง):</td>
+                <td>ดิสก์เบรก/ดิสก์เบรก</td>
               </tr>
             </tbody>
           </table>
         </div>
   
         <p class="disclaimer">
-          คำแนะนำการใช้ข้อมูล: ข้อมูลที่แสดงเป็นข้อมูลเบื้องต้นและอาจมีการเปลี่ยนแปลง
-          ราคาและสเปคอย่างเป็นทางการสำหรับรุ่น EV จะประกาศเมื่อรถเปิดตัว โปรดสอบถามรายละเอียดเพิ่มเติมจากผู้จำหน่าย
+          ข้อมูลอาจมีการเปลี่ยนแปลง โปรดตรวจสอบกับตัวแทนจำหน่าย BYD สำหรับข้อมูลล่าสุดและรายละเอียดที่ถูกต้อง
         </p>
       </div>
     </div>
@@ -135,15 +121,15 @@
   export default {
     data() {
       return {
-        carName: "OMODA C5 EV",
-        carDescription: "SUV ไฟฟ้าดีไซน์สปอร์ตคูเป้",
-        carPrice: " ฿899,000",
+        carName: "BYD S5 EV",
+        carDescription: "รถไฟฟ้าวาดาเยี่ยม",
+        carPrice: "฿849,900",
         carImages: [
-          "https://www.omodajaecoo.co.th/v2/images/Ultimate-Mint-green-with-black-roof.png", // ตัวอย่างภาพ
-          "https://www.omoda.co.za/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterior1.98ae1a02.jpg&w=3840&q=75",
-          "https://www.omoda.co.za/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterior2.8a2b288a.jpg&w=3840&q=75",
-          "https://www.omoda.co.za/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterior3.719c00c6.jpg&w=3840&q=75",
-          "https://www.omoda.co.za/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fads.e250f7cb.jpg&w=3840&q=75"
+          "https://img.icarcdn.com/autospinn/body/000000235924_4f7bb880_c92a_4391_93c0_a5ab032ed975.jpg", 
+          "https://img.icarcdn.com/autospinn/body/000000016755_85821841_e9b0_4402_8f8c_4b21f1963c9b.jpg",
+          "https://img.icarcdn.com/autospinn/body/000000279359_70bea3a4_fc7e_4227_af2b_7b8e5710f6c0.jpg",
+          "https://img.icarcdn.com/autospinn/body/000000255908_c9c9350f_8d54_445e_80e5_396d7b795eb0.jpg",
+          "https://img.icarcdn.com/autospinn/body/000000019175_efe8fa09_f3f8_4647_b589_1aeaa3da3c9e.jpg"
         ],
         currentImage: 0
       };
@@ -201,7 +187,7 @@
   
   .main-image {
     width: 100%;
-    max-height: 500px; /* ปรับความสูงตามต้องการ */
+    max-height: 500px;
     object-fit: contain;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -238,7 +224,7 @@
     display: flex;
     gap: 10px;
     margin-top: 15px;
-    overflow-x: auto; /* เพิ่มแถบเลื่อนแนวนอนหากรูปภาพเยอะ */
+    overflow-x: auto;
   }
   
   .thumbnail-item {
@@ -252,7 +238,7 @@
   
   .thumbnail-item.active {
     opacity: 1;
-    border-color: #4caf50; /* สีเน้นเมื่อรูปภาพถูกเลือก */
+    border-color: #4caf50;
   }
   
   .thumbnail {
@@ -267,7 +253,7 @@
     margin-top: 30px;
     text-align: left;
     width: 100%;
-    margin-bottom: 20px; /* เพิ่ม margin-bottom ให้ car-article */
+    margin-bottom: 20px;
   }
   
   .car-article h2 {
@@ -276,32 +262,32 @@
   }
   
   .table-section {
-    margin-top: 5%; /* ปรับ margin-top ของ table-section */
+    margin-top: 5%;
     width: 100%;
     padding-bottom: 30px;
   }
   
   .table-header {
     padding: 10px;
-    background-color: #f2f2f2; /* สีพื้นหลังอ่อน */
-    border-radius: 8px 8px 0 0; /* มุมโค้งด้านบน */
+    background-color: #f2f2f2;
+    border-radius: 8px 8px 0 0;
     margin-bottom: 0;
   }
   
   .table-header h3 {
-    color: #4caf50; /* เปลี่ยนสีหัวข้อเป็นสีเขียว */
+    color: #4caf50;
     margin: 0;
-    font-size: 1.1em; /* ปรับขนาดตัวอักษรเล็กน้อย */
+    font-size: 1.1em;
   }
   
   .special-table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ccc; /* เส้นขอบรอบนอก */
+    border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 20px; /* เพิ่ม margin-bottom ให้ตาราง */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเล็กน้อย */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .special-table th,
@@ -312,16 +298,16 @@
   }
   
   .special-table tbody tr:last-of-type td {
-    border-bottom: 1px solid #ccc; /* เส้นขอบด้านล่าง */
+    border-bottom: 1px solid #ccc;
   }
   
   .special-table tbody tr:nth-child(even) {
-    background-color: #f3f3f3; /* สลับสีพื้นหลังแถว */
+    background-color: #f3f3f3;
   }
   
   .special-table td:first-child {
-    font-weight: bold; /* ทำให้หัวข้อในคอลัมน์แรกหนา */
-    background-color: #f9f9f9; /* สีพื้นหลังอ่อนสำหรับหัวข้อ */
+    font-weight: bold;
+    background-color: #f9f9f9;
   }
   
   .disclaimer {

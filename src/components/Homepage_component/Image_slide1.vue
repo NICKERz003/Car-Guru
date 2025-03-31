@@ -33,7 +33,7 @@ export default {
           image: 'https://www.mercedes-benz.co.th/content/dam/hq/passengercars/cars/g-class/n465-pi/overview/exterior/03-2024/images/mercedes-benz-g-class-n465-exterior-protectivestrips-2176x1224-03-2024.jpg/1740019670643.jpg?im=Crop,rect=(0,0,2176,1224);Resize=(1280)',
           brand: 'Mercedes',
           model: 'G-Class Electric',
-          price: 949900,
+          price: 9500000,
           description: 'พบกับราคานี้ในประเทศไทย',
         },
         {

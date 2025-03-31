@@ -53,7 +53,7 @@ export default {
         id: 4, 
         image: 'https://autostation.com/wp-content/uploads/2025/03/05-DEEPAL-S05-1-scaled.jpg', 
         brand: 'Deepal', 
-        model: 'S05 2025', 
+        model: 'S05 ', 
         price: 799000, 
         description: 'SUV ขนาดกลาง' },
         { 

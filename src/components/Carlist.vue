@@ -2,7 +2,7 @@
   <div>
     <Advertising_space></Advertising_space>
     <FilterComponent @apply-filters="applyFilters" @reset-filters="resetFilters" />
-    <CarListComponent :cars="filteredCars" :filters="filters" />
+    <CarListComponent :cars="paginatedCars" :currentPage="currentPage" :totalPages="totalPages" @next-page="nextPage" @prev-page="prevPage" />
     <NewsCard></NewsCard>
   </div>
 </template>
@@ -13,32 +13,33 @@ import FilterComponent from './Carlistpage_component/FilterComponent.vue';
 import CarListComponent from './Carlistpage_component/CarListComponent.vue';
 import Advertising_space from './Advertising_space.vue';
 import NewsCard from './NewsCard.vue';
+
 export default {
   name: 'CarlistPage',
-  components:{
-  FilterComponent,
-  CarListComponent,
-  Advertising_space,
-  NewsCard
+  components: {
+    FilterComponent,
+    CarListComponent,
+    Advertising_space,
+    NewsCard
   },
   data() {
     return {
-      cars: [
-        { id: 1, brand: 'Toyota', model: 'Corolla', price: 750000, image: 'https://via.placeholder.com/200x150?text=Car1', description: 'Affordable sedan' },
-        { id: 2, brand: 'Honda', model: 'Civic', price: 900000, image: 'https://via.placeholder.com/200x150?text=Car2', description: 'Sporty and stylish' },
-        { id: 3, brand: 'BMW', model: 'X5', price: 3000000, image: 'https://via.placeholder.com/200x150?text=Car3', description: 'Luxury SUV' },
-        { id: 4, brand: 'BMW', model: 'X6', price: 3000000, image: 'https://via.placeholder.com/200x150?text=Car4', description: 'Luxury SUV' },
-        // Add more cars here...
-      ],
+      cars: [],
       filters: {
         brand: '',
         model: '',
         price: '',
       },
+      currenPage:1,
+      totalPages:1,
     };
   },
-    computed: {
+  computed: {
+    paginatedCars() {
+      return this.cars;  // ส่งข้อมูลที่ได้รับจาก API มาทั้งหมด
+    },
     filteredCars() {
+      // คำนวณข้อมูลที่กรองแล้วและส่งไปยัง CarListComponent
       return this.cars.filter(car => {
         if (this.filters.brand && car.brand !== this.filters.brand) return false;
         if (this.filters.model && car.model !== this.filters.model) return false;
@@ -55,16 +56,50 @@ export default {
     },
   },
   methods: {
-    applyFilters(filters) {
+    async applyFilters(filters) {
       this.filters = filters;
+      this.currentPage = 1;  // รีเซ็ตหน้าเป็นหน้าแรกเมื่อกรองข้อมูลใหม่
+      this.fetchCars();
     },
+    async fetchCars() {
+      try {
+        const response = await axios.get('http://localhost:8000/cars', {
+          params: {
+            ...this.filters,
+            page: this.currentPage, // ส่งค่า page
+          },
+        });
+        this.cars = response.data;
+        // คำนวณจำนวนหน้าทั้งหมด
+        this.totalPages = Math.ceil(response.data.total / 20); // คำนวณจำนวนหน้าทั้งหมดจากจำนวนผลลัพธ์ทั้งหมด
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.fetchCars();
+      }
+    },
+
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.fetchCars();
+      }
+    },
+
     resetFilters() {
       this.filters = { brand: '', model: '', price: '' };
+      this.fetchCars();  // รีเซ็ตหน้าและโหลดข้อมูลใหม่
     },
   },
   created() {
+     this.fetchCars();
     // ดึงข้อมูลจาก API
-    axios.get('/api/cars')
+    axios.get('http://localhost:8000/cars')
       .then(response => {
         this.cars = response.data;  // เก็บข้อมูลใน array cars
       })

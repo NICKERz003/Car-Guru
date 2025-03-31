@@ -3,7 +3,7 @@
   <div class="car-list">
     <div class="car-cards">
       <!-- การแสดงการ์ดรถยนต์ -->
-      <div class="car-card" v-for="car in filteredCars" :key="car.id">
+      <div class="car-card" v-for="car in cars" :key="car.id">
         <div class="car-image">
           <img :src="car.image" alt="Car image" />
         </div>
@@ -28,61 +28,17 @@
 </template>
 
 <script>
-
 export default {
-  props: ['cars', 'filters'],
-  data() {
-    return {
-      currentPage: 1,
-      itemsPerPage: 20,  // แสดงการ์ด 20 อันในแต่ละหน้า
-    };
-    
-  },
-  computed: {
-    filteredCars() {
-      let filtered = this.cars;
-
-      // กรองตามแบรนด์
-      if (this.filters.brand) {
-        filtered = filtered.filter(car => car.brand === this.filters.brand);
-      }
-
-      // กรองตามรุ่น
-      if (this.filters.model) {
-        filtered = filtered.filter(car => car.model === this.filters.model);
-      }
-
-      // กรองตามช่วงราคา
-      if (this.filters.price) {
-        const [minPrice, maxPrice] = this.filters.price.split('+');
-        filtered = filtered.filter(car => {
-          // กรองราคาตามช่วง
-          if (minPrice && !maxPrice) {
-            return car.price >= parseInt(minPrice); // ถ้าไม่มี maxPrice จะกรองแค่ minPrice
-          }
-          // ถ้ามี maxPrice
-          if (maxPrice) {
-            return car.price >= parseInt(minPrice) && car.price <= parseInt(maxPrice);
-          }
-          return true;
-        });
-      }
-
-      return filtered.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
-    },
-    totalPages() {
-      return Math.ceil(this.cars.length / this.itemsPerPage);
-    },
-  },
+  props: ['cars', 'currentPage', 'totalPages'],  // รับข้อมูลกรองจาก parent component
   methods: {
     nextPage() {
       if (this.currentPage < this.totalPages) {
-        this.currentPage++;
+         this.$emit('next-page');
       }
     },
     prevPage() {
       if (this.currentPage > 1) {
-        this.currentPage--;
+        this.$emit('prev-page');
       }
     },
   },

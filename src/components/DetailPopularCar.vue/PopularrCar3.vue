@@ -2,7 +2,7 @@
     <div class="car-container">
       <div class="car-info-header">
         <h1>{{ carName }}</h1>
-        <p class="car-price">ราคา: ฿1,699,000</p>
+        <p class="car-price">ราคา: ฿550,000</p>
       </div>
   
       <div class="main-image-container">
@@ -33,16 +33,16 @@
       <div class="car-article">
         <h2>{{ carName }}</h2>
         <p>
-          {{ carDescription }} เป็นรถยนต์ MPV อเนกประสงค์ที่มาพร้อมกับเทคโนโลยี e-POWER อันเป็นเอกลักษณ์ของ Nissan
-          มอบประสบการณ์การขับขี่ที่นุ่มนวล เงียบ และประหยัดน้ำมัน พร้อมดีไซน์ภายนอกและภายในที่ทันสมัยและกว้างขวาง
+          {{ carDescription }} เป็นรถยนต์ซีดานขนาดเล็กยอดนิยมในประเทศไทย ที่ได้รับการยอมรับในด้านความประหยัด
+          ความคล่องตัว และความสะดวกสบาย เหมาะสำหรับการใช้งานในเมืองเป็นหลัก
         </p>
         <p>
-          เทคโนโลยี e-POWER ใน {{ carName }} ทำงานโดยใช้เครื่องยนต์เบนซินขนาดเล็กเพื่อสร้างกระแสไฟฟ้าไปขับเคลื่อนมอเตอร์ไฟฟ้า
-          ทำให้ได้อัตราเร่งที่ราบรื่นและต่อเนื่อง เหมือนรถยนต์ไฟฟ้า แต่ไม่ต้องกังวลเรื่องการชาร์จไฟ
+          {{ carName }} มาพร้อมกับเครื่องยนต์เบนซินขนาด 1.2 ลิตร ให้การขับขี่ที่นุ่มนวลและประหยัดน้ำมัน
+          พร้อมระบบส่งกำลังอัตโนมัติ ตอบโจทย์การใช้งานในชีวิตประจำวันได้อย่างลงตัว
         </p>
         <p>
-          ภายในห้องโดยสารของ {{ carName }} ออกแบบมาเพื่อความสะดวกสบายสูงสุดของผู้โดยสารทุกที่นั่ง
-          มีพื้นที่กว้างขวาง เบาะนั่งปรับเปลี่ยนได้หลากหลายรูปแบบ และเทคโนโลยีอำนวยความสะดวกมากมาย
+          ภายในห้องโดยสารของ {{ carName }} ออกแบบมาเพื่อความสะดวกสบายของผู้ขับขี่และผู้โดยสาร
+          พร้อมอุปกรณ์อำนวยความสะดวกและระบบความปลอดภัยที่จำเป็น
         </p>
   
         <div class="table-section">
@@ -53,7 +53,7 @@
             <tbody>
               <tr>
                 <td>แบรนด์</td>
-                <td>Nissan</td>
+                <td>Toyota</td>
               </tr>
               <tr>
                 <td>รุ่น</td>
@@ -61,15 +61,15 @@
               </tr>
               <tr>
                 <td>ประเภทรถ</td>
-                <td>รถยนต์ MPV</td>
+                <td>รถยนต์ซีดาน</td>
               </tr>
               <tr>
                 <td>ปีที่เปิดตัว</td>
-                <td>2024</td>
+                <td>2022 (รุ่นปัจจุบัน)</td>
               </tr>
               <tr>
                 <td>ราคา</td>
-                <td>{{ carPrice }}</td>
+                <td>฿550,000</td>
               </tr>
             </tbody>
           </table>
@@ -83,47 +83,47 @@
             <tbody>
               <tr>
                 <td>ระบบขับเคลื่อน:</td>
-                <td>e-POWER</td>
+                <td>ขับเคลื่อนล้อหน้า (FWD)</td>
               </tr>
               <tr>
                 <td>เครื่องยนต์:</td>
-                <td>HR12DE เบนซิน 3 สูบ DOHC 12 วาล์ว</td>
+                <td>1.2 ลิตร</td>
               </tr>
               <tr>
                 <td>ความจุเครื่องยนต์ (CC):</td>
-                <td>1,198 CC</td>
+                <td>1,197</td>
               </tr>
               <tr>
                 <td>มอเตอร์ไฟฟ้า:</td>
-                <td>EM57</td>
+                <td>N/A</td>
               </tr>
               <tr>
                 <td>กำลังมอเตอร์ไฟฟ้าสูงสุด:</td>
-                <td>100 kW (136 PS)</td>
+                <td>N/A</td>
               </tr>
               <tr>
                 <td>แรงบิดมอเตอร์ไฟฟ้าสูงสุด:</td>
-                <td>320 นิวตัน-เมตร</td>
+                <td>N/A</td>
               </tr>
               <tr>
                 <td>ระบบเกียร์:</td>
-                <td>อัตโนมัติ (Single Speed Reduction Gear)</td>
+                <td>อัตโนมัติ</td>
               </tr>
               <tr>
                 <td>ขนาด (ยาว x กว้าง x สูง):</td>
-                <td>4,690 x 1,695 x 1,870 มม.</td>
+                <td>4,425 x 1,740 x 1,480 มม.</td>
               </tr>
               <tr>
                 <td>ความจุถังน้ำมัน:</td>
-                <td>55 ลิตร</td>
+                <td>40 ลิตร</td>
               </tr>
               <tr>
-                <td>ระบบเบรก:</td>
-                <td>ดิสก์เบรก (หน้า), ดรัมเบรก (หลัง) พร้อม ABS, EBD, BA</td>
+                <td>ระบบเบรก (หน้า/หลัง):</td>
+                <td>ดิสก์เบรก/ดรัมเบรก</td>
               </tr>
               <tr>
                 <td>ยาง:</td>
-                <td>195/65 R15</td>
+                <td>185/60 R16</td>
               </tr>
               <tr>
               </tr>
@@ -132,8 +132,8 @@
         </div>
   
         <p class="disclaimer">
-          คำแนะนำการใช้ข้อมูล: ภาพที่แสดงเป็นเพียงภาพประกอบ และข้อมูลรวมถึงราคาอาจมีการเปลี่ยนแปลง
-          ดังนั้นโปรดสอบถามรายละเอียดของสินค้ากับบริษัทและผู้จำหน่ายทุกครั้งก่อนตัดสินใจ
+          คำแนะนำการใช้ข้อมูล: ข้อมูลที่แสดงเป็นข้อมูลเบื้องต้น
+          สเปคและราคาอาจแตกต่างกันไปในแต่ละรุ่นย่อย โปรดสอบถามรายละเอียดเพิ่มเติมจากผู้จำหน่าย Toyota อย่างเป็นทางการ
         </p>
       </div>
     </div>
@@ -143,15 +143,15 @@
   export default {
     data() {
       return {
-        carName: "Nissan Serena e-POWER",
-        carDescription: "MPV อเนกประสงค์ พร้อมเทคโนโลยี e-POWER",
-        carPrice: "฿1,699,000",
+        carName: "Toyota Yaris ATIV",
+        carDescription: "รถยนต์ซีดานขนาดเล็กยอดนิยม",
+        carPrice: "เริ่มต้น ฿539,000",
         carImages: [
-          "https://krungsrimarket.cjdataservice.com/uploads/articles/article_content_1bc.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/interior/10/88/nissan-serena-dashboard-view-165700.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/interior/10/88/nissan-serena-rd-row-seat-855034.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/exterior/10/88/nissan-serena-side-view-694696.jpg",
-          "https://imgcdn.oto.com.sg/large/gallery/interior/10/88/nissan-serena-airbags-view-180199.jpg"
+          "https://www.toyota.co.th/media/product/series/banners/v/yarisativ/25/lead/005c9bca8ec8b0e3de4044d88b6d01a9635ff59e8a1cd682d21ee73fc963f8a2.webp", // ตัวอย่างภาพ
+          "https://www.toyota.co.th/media/product/series/banners/v/yarisativ/25/lead/ddfe4e656e8dc69becc7bc58c345837e16913c4ea48c79dd4a52098b304d28e6.webp",
+          "https://www.toyota.co.th/media/product/series/banners/v/yarisativ/25/lead/bf7e1270339ea791e5290c26bfe8584ae3eb4bb1902bb5cda7a61c8e880b9a41.webp",
+          "https://www.toyota.co.th/media/product/series/banners/v/yarisativ/25/lead/22616f45deb5523a72eb245aa4c228e1017f5f2afde008184c658a9c44bea409.webp",
+          "https://www.toyota.co.th/media/product/series/banners/v/yarisativ/25/accessories/c7667822c0add830429f9cfa109347f8f287fe75f41bbbf9e70d64c6c3f6c0af.webp"
         ],
         currentImage: 0
       };
@@ -297,7 +297,7 @@
   }
   
   .table-header h3 {
-    color: #4caf50; /* เปลี่ยนสีหัวข้อเป็นสีเขียว */
+    color: #4caf50;
     margin: 0;
     font-size: 1.1em; /* ปรับขนาดตัวอักษรเล็กน้อย */
   }
