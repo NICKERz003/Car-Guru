@@ -40,7 +40,7 @@ export default {
         image: 'https://krungsrimarket.cjdataservice.com/uploads/articles/article_content_1bc.jpg', 
         brand: 'Nissan', 
         model: 'Serena e-POWER', 
-        price: 'N/A', 
+        price: 1690000, 
         description: 'รถยนต์ MPV ไฮบริด' },
         { 
         id: 3, 
@@ -54,7 +54,7 @@ export default {
         image: 'https://autostation.com/wp-content/uploads/2025/03/05-DEEPAL-S05-1-scaled.jpg', 
         brand: 'Deepal', 
         model: 'S05 2025', 
-        price: 'N/A', 
+        price: 799000, 
         description: 'SUV ขนาดกลาง' },
         { 
         id: 5, 

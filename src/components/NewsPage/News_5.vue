@@ -1,6 +1,7 @@
 <template>
   <section id="news-detail">
     <h1 class="news-title">
+        asdasdd
     </h1>
 
     <div class="news-meta">

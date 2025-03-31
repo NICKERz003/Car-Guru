@@ -1,15 +1,6 @@
 <template>
   <section id="car-detail">
-    <h1>{{ car.brand }} {{ car.model }}</h1>
-    <div class="car-detail-container">
-      <div class="car-image">
-        <img :src="car.image" alt="Car image" />
-      </div>
-      <div class="car-details">
-        <p class="car-price">฿{{ car.price.toLocaleString() }}</p>
-        <p class="car-description">{{ car.description }}</p>
-      </div>
-    </div>
+    
   </section>
 </template>
 
@@ -32,7 +23,7 @@ export default {
         image: 'https://krungsrimarket.cjdataservice.com/uploads/articles/article_content_1bc.jpg', 
         brand: 'Nissan', 
         model: 'Serena e-POWER', 
-        price: 'N/A', 
+        price: 1690000, 
         description: 'Mitsubishi XFORCE HEV – SUV ขนาดเล็กขับเคลื่อนด้วยระบบไฮบริด ขุมพลังเครื่องยนต์ MIVEC 1.6 ลิตร ประหยัดน้ำมัน พร้อมดีไซน์ที่สปอร์ตและเทคโนโลยีทันสมัย เหมาะสำหรับการใช้งานในเมืองและเดินทางไกล' },
         { 
         id: 3, 
@@ -46,7 +37,7 @@ export default {
         image: 'https://autostation.com/wp-content/uploads/2025/03/05-DEEPAL-S05-1-scaled.jpg', 
         brand: 'Deepal', 
         model: 'S05 2025', 
-        price: 'N/A', 
+        price: 799000, 
         description: 'Deepal S05 2025 – SUV ไฟฟ้าขนาดกลางจาก Changan มีให้เลือกทั้งรุ่นไฟฟ้าเต็มรูปแบบ (BEV) และรุ่น REEV ที่ขยายระยะทางด้วยเครื่องยนต์ 1.5 ลิตร มอบพละกำลัง 218 แรงม้า และขับขี่ได้ไกลด้วยโหมดไฟฟ้า' },
         { 
         id: 5, 
@@ -75,36 +66,5 @@ export default {
 </script>
 
 <style scoped>
-#car-detail {
-  padding: 20px;
-  text-align: center;
-}
 
-.car-detail-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.car-image img {
-    width: 100%;
-    height: 500px;
-  object-fit: cover;
-}
-
-.car-details {
-  max-width: 500px;
-  text-align: left;
-}
-
-.car-price {
-  font-size: 24px;
-  font-weight: bold;
-  color: #4caf50;
-}
-
-.car-description {
-  font-size: 16px;
-  color: #888;
-}
 </style>

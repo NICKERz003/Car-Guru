@@ -1,7 +1,7 @@
 <template>
   <section id="header">
     <div class="logo">
-      <img src="@/assets/logo_car-guru.png" alt="Car Guru Logo" width="80" height="80">
+      <RouterLink to="/"><img src="@/assets/logo_car-guru.png" alt="Car Guru Logo" width="80" height="80"></RouterLink>
     </div>
     <div class="search-box">
       <form action="/action_page.php">

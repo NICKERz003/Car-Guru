@@ -1,0 +1,15 @@
+<template>
+    <p>NewCar5</p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate quas quis illo, ea itaque veniam, deleniti aut obcaecati nam tempora facere perspiciatis laborum, nisi natus voluptatem? Hic vitae cupiditate sequi!
+</template>
+
+
+<script>
+export default{
+    name: 'NewCar5'
+}
+</script>
+
+<style>
+
+</style>
