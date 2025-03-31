@@ -12,7 +12,9 @@ import ProfileEditPage from '@/components/ProfileEditPage.vue';
 import ElectricCar from '@/components/ElectricCar.vue';
 import PopularCar from '@/components/PopularCar.vue';
 import NewCar from '@/components/ฺNewCar.vue';
-
+import News_1 from '@/components/NewsPage/News_1.vue';
+import News_2 from '@/components/NewsPage/News_2.vue';
+import News_3 from '@/components/NewsPage/News_3.vue';
 
 
 
@@ -33,6 +35,10 @@ const routes = [
     { path: '/car-detail/ElectricCar/:id', component: ElectricCar, props: true },
     { path: '/car-detail/PopularCar/:id', component: PopularCar, props: true },
     { path: '/car-detail/DetailNewCar/:id', component: NewCar, props: true },
+    { path: '/news1', component: News_1 },
+    { path: '/news2', component: News_2 },
+    { path: '/news3', component: News_3 },
+
 
     { path: '/brand/:brandName', component: BrandPage, props: true },
 

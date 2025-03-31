@@ -136,7 +136,6 @@ h1 {
 }
 
 .car-card {
-
   background-color: #fff;
   border-radius: 10px;
   width: 200px;
@@ -149,6 +148,7 @@ h1 {
 }
 
 .car-card:hover {
+  background-color: #e6e6e6;
   transform: scale(1.05);
 }
 

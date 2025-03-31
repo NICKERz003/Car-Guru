@@ -9,13 +9,13 @@
         <div class="news-details">
           <h3>{{ news.title }}</h3>
           <p class="news-description">{{ news.description }}</p>
-          <router-link :to="'/news/' + news.id">
+          <router-link :to="'/news' + news.id">
             <button class="read-more-btn">อ่านเพิ่มเติม</button>
           </router-link>
         </div>
       </div>
     </div>
-    <button class="view-more-btn">ดูทั้งหมด</button>
+    <router-link to ="/Update-News" ><button class="view-more-btn">ดูทั้งหมด</button></router-link>
   </section>
 </template>
 
@@ -28,21 +28,21 @@ export default {
       newsItems: [
         {
           id: 1,
-          image: "https://via.placeholder.com/200x150?text=News+1",
-          title: "เผยโฉม Bentley 2024 Ducati Diavel",
-          description: "กรุงเทพฯ: เบนท์ลีย์เผยรถยนต์รุ่นใหม่ล่าสุด อิเล็กทริค Ducati และบริดจ์สโตน...",
+          image: "https://static.thairath.co.th/media/Dtbezn3nNUxytg04avetJwEQoVObPK2bfdBtDekTznl4ww.webp",
+          title: "เปิดหล่อในมอเตอร์โชว์ MAZDA 6e เข้าไทย เร็วๆนี้",
+          description: "Mazda 6e รถซีดานพลังงานไฟฟ้า การร่วมมือกับแบรนด์จีนอย่าง ChangAn ถูกนำมาโชว์ตัวภายในงานมอเตอร์โชว์...",
         },
         {
           id: 2,
-          image: "https://via.placeholder.com/200x150?text=News+2",
-          title: "Yamaha Motors พัฒนาล่าสุด",
-          description: "BANGKOK: งาน Bangkok Motor Show ครั้งที่ 37 เปิดตัวจักรยานยนต์รุ่นใหม่ล่าสุด...",
+          image: "https://autolifethailand.tv/wp-content/uploads/2025/03/MG4_1.jpg",
+          title: "All NEW MG4 ลดทอนความดิบลงทั้งดีไซน์และสมรรถนะ แต่ตัวโตขึ้นและเบาลง",
+          description: "MG4 รุ่นปัจจุบัน เป็นหนึ่งในรุ่นที่ได้รับผลตอบรับดีจากหลายตลาด แต่ไม่ใช่กับในบ้านเกิด เนื่องจาก ...",
         },
         {
           id: 3,
-          image: "https://via.placeholder.com/200x150?text=News+3",
-          title: "พบกับจักรยานยนต์ในงาน Bangkok Motor Show",
-          description: "BANGKOK: โลกทั้งใบกลายเป็นที่รวมตัวของยานพาหนะ...",
+          image: "https://autolifethailand.tv/wp-content/uploads/2025/03/Lexus-RZ_1.jpg",
+          title: "Lexus RZ เปิดตัวแล้ว ขับได้ไกลขึ้น 20% พร้อมเสริมทัพ RZ500e F SPORT แต่งพิเศษและทรงพลังกว่า",
+          description: "Lexus RZ รุ่นล่าสุดเปิดตัวแล้วที่เบลเยี่ยม โดยปรับเปลี่ยนใหม่ในหลายจุด ซึ่งเน้นไปที่คุณภาพการขับขี่ให้สนุกมากขึ้น รวมถึงการ...",
         },
         
 
