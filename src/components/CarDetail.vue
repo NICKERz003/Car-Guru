@@ -1,7 +1,7 @@
 <template>
   <section id="car-detail">
     <h1 v-if="car" >{{ car.brand }} {{ car.model }}</h1>
-    <h2 v-if="car" class="car-price">฿ {{car.price.toLocaleString()}}</h2>
+    <h2 v-if="car" class="car-price">฿ {{car.price}}</h2>
     <div v-if="car" class="car-detail-container">
       
       <div class="CssImg">

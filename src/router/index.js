@@ -6,7 +6,6 @@ import CarDetail from '../components/CarDetail.vue'; // หน้า 'ราย�
 import LoginPage from '@/components/LoginPage.vue'; // หน้า 'เข้าสู่ระบบ'
 import UpdateNews from '@/components/UpdateNews.vue';
 import Register from '@/components/Register.vue';
-import BrandPage from '@/components/BrandPage.vue';
 import CarlistPage from '@/components/Carlist.vue';
 import ProfileEditPage from '@/components/ProfileEditPage.vue';
 
@@ -78,7 +77,6 @@ const routes = [
     { path: '/car-detail/PopularCar/6', component: PopularrCar6 },
 
 
-    { path: '/brand/:brandName', component: BrandPage, props: true },
 
 
 ];
