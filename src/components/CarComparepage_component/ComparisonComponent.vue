@@ -187,7 +187,7 @@ export default {
         Suzuki:['Swift','Jimny','Vitara','Celerio','Baleno','Alto','S-Cross','Ertiga','SX4 S-Cross','Grand Vitara',],
         Porsche:['911','Cayenne','Macan','Panamera','Taycan','718 Cayman','718 Boxster','911 Turbo','911 Carrera','Cayenne Coupe',],
         Audi:['A3','A4','Q5','Q7','Q8','A6','A8','S3','R8','TT',],
-        Ferrari:['488 GTB','812 Superfast','Portofino','F8 Tributo','LaFerrari','GTC4Lusso','Ferrari California T','Roma','	F12 Berlinetta','Ferrari 488 Pista',],
+        Ferrari:['488 GTB','812 Superfast','Portofino','F8 Tributo','LaFerrari','GTC4Lusso','California T','Roma','	F12 Berlinetta','488 Pista',],
         Mitsubishi:['Triton','Pajero Sport','Outlander','Montero','Mirage','Lancer','ASX','Delica','Expander','Eclipse Cross',],
       },
       filteredModels: [],  // รุ่นที่กรองแล้ว
