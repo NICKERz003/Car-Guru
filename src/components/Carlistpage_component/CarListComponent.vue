@@ -3,7 +3,7 @@
   <div class="car-list">
     <div class="car-cards">
       <!-- การแสดงการ์ดรถยนต์ -->
-      <div class="car-card" v-for="car in cars" :key="car.id">
+      <div class="car-card" v-for="car in cars" :key="car.model">
         <div class="car-image">
           <img :src="car.image_url" alt="Car image" />
         </div>
@@ -11,7 +11,7 @@
           <h3>{{ car.brand }} {{ car.model }}</h3>
           <p class="car-price">฿{{car.price.toLocaleString('th')}}</p>
           <p class="car-description">{{ car.description }}</p>
-          <router-link :to="'/car-detail/'+car.id">
+          <router-link :to="'/car-detail/' + car.brand + '/'+ car.model">
             <button class="view-details">ดูรายละเอียด</button>
           </router-link>
         </div>

@@ -51,11 +51,11 @@ const routes = [
     { path: '/login-page', component: LoginPage, meta: { noHeader: true, noFooter: true } },
     { path: '/register-page', component: Register, meta: { noHeader: true, noFooter: true } },
 
-    { path: '/car-detail/:id', component: CarDetail, props: true },
+    { path: '/car-detail/:brand/:model', component: CarDetail, props: true },
     { path: '/news1', component: News_1 },
     { path: '/news2', component: News_2 },
     { path: '/news3', component: News_3 },
-    
+
     { path: '/car-detail/ElectricCar/1', component: ElectricCar1 },
     { path: '/car-detail/ElectricCar/2', component: ElectricCar2 },
     { path: '/car-detail/ElectricCar/3', component: ElectricCar3 },
@@ -67,7 +67,7 @@ const routes = [
     { path: '/car-detail/DetailNewCar/2', component: NewCar2 },
     { path: '/car-detail/DetailNewCar/3', component: NewCar3 },
     { path: '/car-detail/DetailNewCar/4', component: NewCar4 },
-    { path: '/car-detail/DetailNewCar/5' , component: NewCar5 },
+    { path: '/car-detail/DetailNewCar/5', component: NewCar5 },
     { path: '/car-detail/DetailNewCar/6', component: NewCar6 },
 
     { path: '/car-detail/PopularCar/1', component: PopularrCar1 },
@@ -85,7 +85,7 @@ const routes = [
 
 
 const router = createRouter({
-    
+
     history: createWebHistory(),
     routes
 });

@@ -327,6 +327,10 @@ export default {
 
 <style scoped>
 
+img {
+  max-height: 150px;
+}
+
 .Detail_table {
   width: 80%;
   display: flex;
