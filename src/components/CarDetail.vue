@@ -81,6 +81,10 @@
         </table>
       </div>
     </div>
+
+    <p v-if="car" class="disclaimer">
+        ข้อมูลอาจมีการเปลี่ยนแปลง โปรดตรวจสอบกับตัวแทนจำหน่าย {{ car.brand }} สำหรับข้อมูลล่าสุดและรายละเอียดที่ถูกต้อง
+      </p>
   </section>
 </template>
 
@@ -125,6 +129,16 @@ export default {
 };
 </script>
 <style scoped>
+.disclaimer {
+  font-size: 0.9rem;
+  color: #95a5a6;
+  margin-top: 30px;
+  font-style: italic;
+  border-top: 1px solid #ecf0f1;
+  padding-top: 20px;
+  line-height: 1.6;
+}
+
 #car-detail {
   padding: 20px;
   text-align: center;
