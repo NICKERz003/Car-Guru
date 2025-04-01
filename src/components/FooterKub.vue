@@ -17,7 +17,6 @@
         </ul>
       </div>
       
-      
       <!-- Column 3 -->
       <div class="footer-column">
         <h3 class="column-title">เว็บไซต์</h3>
@@ -40,12 +39,6 @@
               <img src="/images/youtube.png" alt="YouTube" width="30" height="30">
             </a>
           </div>
-          <!-- <div class="qr-code">
-            <img src="/images/line-qr.png" alt="LINE QR Code" width="100" height="100">
-            <a href="#" class="line-button">
-              <img src="/images/line-icon.png" alt="LINE" width="50" height="50">
-            </a>
-          </div> -->
         </div>
       </div>
     </div>
@@ -67,7 +60,7 @@
 
 <style>
 #footer {
-  background-color: #2c3e50;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
   color: white;
   padding: 40px 20px 20px;
   font-family: 'Prompt', sans-serif;
@@ -75,7 +68,7 @@
 
 .footer-logo {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .footer-logo img {
@@ -121,6 +114,7 @@
   text-decoration: none;
   font-size: 14px;
   text-shadow: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .footer-links a:hover {
@@ -148,22 +142,11 @@
 .social-icon img {
   width: 30px;
   height: 30px;
+  transition: transform 0.3s ease;
 }
 
-.qr-code {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.qr-code img {
-  width: 100px;
-  height: 100px;
-}
-
-.line-button img {
-  width: 50px;
-  height: 50px;
+.social-icon img:hover {
+  transform: scale(1.2);
 }
 
 .footer-bottom {
@@ -208,6 +191,7 @@
   
   .footer-column {
     width: 100%;
+    margin-bottom: 30px;
   }
 }
 </style>

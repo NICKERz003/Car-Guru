@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader v-if="!isLoginPage && !isRegisterPage"></AppHeader>
+    <AppHeader v-if="!isLoginPage && !isRegisterPage" @search="applySearch"></AppHeader>
     <NavbarComponent v-if="!isLoginPage && !isRegisterPage"></NavbarComponent>
     <router-view></router-view>
     <FooterKub v-if="!isLoginPage && !isRegisterPage"></FooterKub>
@@ -21,13 +21,23 @@ export default {
     NavbarComponent,
     FooterKub,
   },
+  data() {
+    return {
+      searchQuery: ''  // ค่าคำค้นหา
+    };
+  },
   computed: {
     // ตรวจสอบว่าเส้นทางปัจจุบันคือหน้า login หรือ register หรือไม่
     isLoginPage() {
-      return this.$route.meta.noHeader && this.$route.meta.noFooter;
+      return this.$route.meta.noHeader && this.$route.meta.noFooter ;
     },
     isRegisterPage() {
       return this.$route.meta.noHeader && this.$route.meta.noFooter;
+    }
+  },
+  methods: {
+    applySearch(query) {
+      this.searchQuery = query; // รับคำค้นหาจาก AppHeader และเก็บไว้ใน searchQuery
     }
   }
 }

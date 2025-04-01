@@ -1,89 +1,78 @@
 <template>
   <section id="box">
-   <h2>คำนวณการผ่อนชำระ</h2>
-  <div class="loan-calculator-container">
-    <div class="left-section">
-      <label for="brand">เลือกแบรนด์รถ:</label>
-      <div class="dropdown-container">
-        <select v-model="selectedBrand" @change="filterModels">
-          <option v-for="brand in brands" :key="brand" :value="brand">{{ brand }}</option>
-        </select>
-      </div>
-
-      <label for="model">เลือกรุ่นรถ:</label>
-      <div class="dropdown-container">
-        <select v-model="selectedModel" :disabled="!selectedBrand" @change="setCarDetails">
-          <option v-for="model in filteredModels" :key="model" :value="model">{{ model }}</option>
-        </select>
-      </div>
-
-      <div v-if="selectedCar">
-        <h3>รายละเอียดรถ</h3>
-        <p><strong>แบรนด์:</strong> {{ selectedCar.brand }}</p>
-        <p><strong>รุ่น:</strong> {{ selectedCar.model }}</p>
-        <p><strong>ราคา:</strong> ฿{{ selectedCar.price.toLocaleString() }}</p>
-        <img :src="selectedCar.image" alt="Car Image" width="200" />
-      </div>
-    </div>
-
-    <div class="right-section">
-      <form @submit.prevent="calculateLoan">
-        <div>
-          <label for="downpayment">เงินดาวน์:</label>
-          <input type="number" v-model="downpayment" required placeholder="กรอกเงินดาวน์" />
+    <h2>คำนวณการผ่อนชำระ</h2>
+    <div class="loan-calculator-container">
+      <div class="left-section">
+        <label for="brand">เลือกแบรนด์รถ:</label>
+        <div class="dropdown-container">
+          <select v-model="selectedBrand" @change="filterModels">
+            <option value="" disabled>เลือกแบรนด์</option>
+            <option v-for="brand in brands" :key="brand" :value="brand">{{ brand }}</option>
+          </select>
         </div>
-        <button type="submit">คำนวณ</button>
-      </form>
 
-      <div v-if="monthlyPayments.length > 0">
-        <h3>ตารางการผ่อนชำระ</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>ระยะเวลา</th>
-              <th>ยอดผ่อนชำระต่อเดือน (บาท)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>ยอดจัด</td>
-              <td>{{ loanAmount.toLocaleString() }}</td>
-            </tr>
-            <tr v-for="(payment, index) in monthlyPayments" :key="index">
-              <td>{{ payment.term }} งวด ({{ payment.interest }}%)</td>
-              <td>{{ payment.amount.toLocaleString() }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <label for="model">เลือกรุ่นรถ:</label>
+        <div class="dropdown-container">
+          <select v-model="selectedModel" :disabled="!selectedBrand" @change="setCarDetails">
+            <option v-for="model in filteredModels" :key="model.model" :value="model.model">{{ model.model }}</option>
+          </select>
+        </div>
+
+        <div v-if="selectedCar">
+          <h3>รายละเอียดรถ</h3>
+        <img :src="selectedCar.image" alt="Car Image" width="200" />
+          <p><strong>แบรนด์:</strong> {{ selectedCar.brand }}</p>
+          <p><strong>รุ่น:</strong> {{ selectedCar.model }}</p>
+          <p><strong>ราคา:</strong> ฿{{ selectedCar.price ? selectedCar.price.toLocaleString() : '' }}</p> <!-- การตรวจสอบก่อนใช้ toLocaleString() -->
+        </div>
       </div>
-    </div>
-  </div> 
+
+      <div class="right-section">
+        <form @submit.prevent="calculateLoan">
+          <div>
+            <label for="downpayment">เงินดาวน์:</label>
+            <input type="number" v-model="downpayment" required placeholder="กรอกเงินดาวน์" />
+          </div>
+          <button type="submit">คำนวณ</button>
+        </form>
+        
+        <div v-if="monthlyPayments.length > 0">
+          <h3>ตารางการผ่อนชำระ</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>ระยะเวลา</th>
+                <th>ยอดผ่อนชำระต่อเดือน (บาท)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ยอดจัด</td>
+                <td>{{ loanAmount.toLocaleString('th-TH') }}</td>
+              </tr>
+              <tr v-for="(payment, index) in monthlyPayments" :key="index">
+                <td>{{ payment.term.toLocaleString('th-TH') }} งวด ({{ payment.interest }}%)</td>
+                <td>{{ payment.amount.toLocaleString('th-TH') }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> 
   </section>
-  
 </template>
 
 <script>
+import axios from 'axios';  // นำเข้า axios
+
 export default {
+  
   data() {
     return {
-      brands: ['Toyota', 'Honda', 'Nissan'], // รายชื่อแบรนด์
-      models: {
-        Toyota: {
-          Corolla: { price: 800000, image: 'https://via.placeholder.com/200?text=Toyota+Corolla' },
-          Camry: { price: 1200000, image: 'https://via.placeholder.com/200?text=Toyota+Camry' },
-        },
-        Honda: {
-          Civic: { price: 900000, image: 'https://via.placeholder.com/200?text=Honda+Civic' },
-          Accord: { price: 1300000, image: 'https://via.placeholder.com/200?text=Honda+Accord' },
-        },
-        Nissan: {
-          Altima: { price: 850000, image: 'https://via.placeholder.com/200?text=Nissan+Altima' },
-          Maxima: { price: 1300000, image: 'https://via.placeholder.com/200?text=Nissan+Maxima' },
-        },
-      },
+      brands: [],
+      filteredModels: [],
       selectedBrand: null,
       selectedModel: null,
-      filteredModels: [],
       selectedCar: null,
       downpayment: 0,
       loanAmount: 0,
@@ -97,24 +86,44 @@ export default {
     };
   },
   methods: {
-    // ฟังก์ชันกรองรุ่นรถตามแบรนด์
-    filterModels() {
-      this.filteredModels = Object.keys(this.models[this.selectedBrand] || {});
-      this.selectedModel = null;
-    },
-    // ฟังก์ชันที่ตั้งค่ารายละเอียดของรถที่เลือก
-    setCarDetails() {
-      if (this.selectedBrand && this.selectedModel) {
-        this.selectedCar = {
-          brand: this.selectedBrand,
-          model: this.selectedModel,
-          price: this.models[this.selectedBrand][this.selectedModel].price,
-          image: this.models[this.selectedBrand][this.selectedModel].image,
-        };
+    async fetchBrands() {
+      try {
+        const response = await axios.get('http://localhost:8000/cars/brands');
+        this.brands = response.data.map(brand => brand.brand);
+      } catch (error) {
+        console.error('Error fetching brands:', error);
       }
     },
-    // ฟังก์ชันคำนวณเงินผ่อน
+    async filterModels() {
+      if (!this.selectedBrand) return;
+      try {
+        const response = await axios.get(`http://localhost:8000/cars/models/${this.selectedBrand}`);
+        this.filteredModels = response.data;  // รับข้อมูลรุ่นจาก API
+        console.log('Fetched Models:', response.data); // ตรวจสอบข้อมูลที่ดึงมาจาก API
+        this.selectedModel = null;  // รีเซ็ตรุ่นเมื่อเปลี่ยนแบรนด์
+        this.selectedCar = null;    // รีเซ็ตรรายละเอียดรถ
+      } catch (error) {
+        console.error('Error fetching models:', error);
+      }
+    },
+    setCarDetails() {
+      const car = this.filteredModels.find(model => model.model === this.selectedModel);
+      if (car) {
+        this.selectedCar = {
+          brand: this.selectedBrand,
+          model: this.selectedModel, 
+          price: car.price.toLocaleString(), // ใช้ราคาและรูปภาพจากข้อมูลรถที่เลือก
+          image: car.image_url 
+          };
+           console.log('Selected Car:', this.selectedCar);
+      }
+    },
     calculateLoan() {
+      // ตรวจสอบว่า selectedCar มีข้อมูลราคาหรือไม่
+    if (!this.selectedCar || !this.selectedCar.price) {
+    console.error('No car selected or price not available');
+    return; // ถ้าไม่มีข้อมูลรถหรือราคาก็ไม่คำนวณ
+  }
       const loanAmount = this.selectedCar.price - this.downpayment;
       this.loanAmount = loanAmount;
       this.monthlyPayments = [];
@@ -128,18 +137,22 @@ export default {
         this.monthlyPayments.push({
           term: term,
           interest: this.interestRates[term], // แสดงอัตราดอกเบี้ย
-          amount: monthlyPayment.toFixed(2),
+          amount: monthlyPayment.toLocaleString(),
         });
       });
     },
   },
+  created() {
+    this.fetchBrands();
+  }
 };
 </script>
+
 
 <style scoped>
 #box {
   text-align: center;
-  height: 500px;
+  height: auto;
 }
 .loan-calculator-container {
   display: flex;

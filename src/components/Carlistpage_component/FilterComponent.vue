@@ -43,7 +43,7 @@
 export default {
   data() {
     return {
-      brands: ['Toyota', 'Honda', 'Nissan', 'BMW', 'Mercedes-Benz'
+      brands: ['Toyota', 'Honda', 'Nissan', 'BMW', 'MercedesBenz'
         ,'Isuzu','Ford','MG','Mazda','GWM','Suzuki','Porsche','Audi','Ferrari','Mitsubishi'
       ],
       models: {
@@ -51,7 +51,7 @@ export default {
         Honda: ['Civic', 'Accord','CR-V','HR-V','Jazz','Brio','Pilot','Odyssey','Insight','Elysion'],
         Nissan: ['Altima', 'Maxima','Rogue','X-Trail','Juke','Leaf','Navara','Pathfinder','Murano','370Z'],
         BMW: ['X5', 'X6','M4','M3','7 Series','Z4','X3','5 Series','i8','M2'],
-        MercedesBenz: ['G-Class', 'A-Class','E-Class','S-Class','GLC','GLE','AMG GT','CLA-Class','G-Class','SL-Class'],
+        MercedesBenz: ['C-Class', 'A-Class','E-Class','S-Class','GLC','GLE','AMG GT','CLA-Class','G-Class','SL-Class'],
         Isuzu:['D-Max','MU-X','V-Cross','TFR','N-Series','Giga','F-Series','Civic','Panther','D-MAX X',],
         Ford:['Focus','Mustang','F-150','Escape','Explorer','Edge','Ranger','Fiesta','Tourneo','Kuga',],
         MG:['MG5','MG ZS','MG HS','MG3','MG Hector','MG6','MG RX5','MG6 Plus','MG5 EV','MG ZS EV',],

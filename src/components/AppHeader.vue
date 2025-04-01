@@ -3,14 +3,7 @@
     <div class="logo">
       <RouterLink to="/"><img src="@/assets/logo_car-guru.png" alt="Car Guru Logo" width="80" height="80"></RouterLink>
     </div>
-    <div class="search-box">
-      <form action="/action_page.php">
-        <input type="text" placeholder="Search..." name="search" >
-        <button type="submit">Search</button>
-      </form>
-    </div>
     <div class="box-right">
-      <!-- ตรวจสอบว่าผู้ใช้ล็อกอินหรือไม่ -->
       <div v-if="isLoggedIn" class="buttons">
         <ProfileBtn />
         <button @click="logout" class="logout-button"><i class="fas fa-sign-out-alt"></i></button>
@@ -21,7 +14,7 @@
 </template>
 
 <script>
-import axios from 'axios';  // เพิ่มการนำเข้า axios
+import axios from 'axios';
 import LoginBtn from './LoginBtn.vue';
 import ProfileBtn from './ProfileBtn.vue';
 
@@ -33,45 +26,43 @@ export default {
   },
   data() {
     return {
-      // ตรวจสอบสถานะการล็อกอินจาก localStorage
-      isLoggedIn: false
+      isLoggedIn: false,
+      searchQuery: '',  // ตัวแปรเก็บคำค้นหา
     };
   },
   created() {
-    this.checkLoginStatus(); // เมื่อ component ถูกโหลดจะตรวจสอบสถานะการล็อกอิน
+    this.checkLoginStatus(); // ตรวจสอบสถานะการล็อกอิน
   },
   methods: {
     checkLoginStatus() {
       const token = localStorage.getItem('authToken');
       if (token) {
         axios.get('http://localhost:8000/verifyToken', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         })
-          .then(() => {
-            // Token valid, set logged in status to true
-            this.isLoggedIn = true;
-          })
-          .catch(() => {
-            // Token invalid, remove it and set logged out
-            localStorage.removeItem('authToken');
-            this.isLoggedIn = false;
+          .then(() => { this.isLoggedIn = true; })
+          .catch(() => { 
+            localStorage.removeItem('authToken'); 
+            this.isLoggedIn = false; 
           });
       } else {
         this.isLoggedIn = false;
       }
     },
+    applySearch() {
+      // ส่งคำค้นหานี้ไปที่ parent component
+      this.$emit('search', this.searchQuery);
+    },
     logout() {
-      // เมื่อ logout, ลบ token ออกจาก localStorage
       localStorage.removeItem('authToken');
-      this.isLoggedIn = false; // เปลี่ยนสถานะการล็อกอินเป็น false
-      // อาจจะเปลี่ยนเส้นทางไปหน้า login หรือหน้าอื่นๆ หลังจาก logout
-      this.$router.push('/'); 
-    }
+      this.isLoggedIn = false;
+      this.$router.push('/');
+    },
+    
   }
 };
 </script>
+
 
 <style scoped>
 #header {

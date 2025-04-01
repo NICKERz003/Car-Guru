@@ -170,33 +170,69 @@ app.put('/profile', async (req, res) => {
 });
 
 // API cars filter
+// app.get('/cars', async (req, res) => {
+//     const { brand, model, price, page = 1 } = req.query;  // รับค่าจาก query string
+//     const itemsPerPage = 20;  // จำนวนรายการต่อหน้า
+//     // สร้างเงื่อนไขการกรอง
+//     let query = 'SELECT * FROM cars WHERE 1=1';
+//     const params = [];
+
+//     if (brand) {
+//         query += ' AND brand = ?';
+//         params.push(brand);
+//     }
+
+//     if (model) {
+//         query += ' AND model = ?';
+//         params.push(model);
+//     }
+
+//     if (price) {
+//         const [minPrice, maxPrice] = price.split('-').map(Number);
+//         if (isNaN(minPrice)) {
+//             return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
+//         }
+
+//         if (maxPrice && isNaN(maxPrice)) {
+//             return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
+//         }
+
+//         if (maxPrice) {
+//             query += ' AND price BETWEEN ? AND ?';
+//             params.push(minPrice, maxPrice);
+//         } else {
+//             query += ' AND price >= ?';
+//             params.push(minPrice);
+//         }
+//     }
+
+//     try {
+//         const [results] = await pool.query(query, params);
+//         res.json(results);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Error fetching cars' });
+//     }
+
+// });
 app.get('/cars', async (req, res) => {
-    const { brand, model, price, page = 1 } = req.query;  // รับค่าจาก query string
-    const itemsPerPage = 20;  // จำนวนรายการต่อหน้า
-    // สร้างเงื่อนไขการกรอง
+    const { brand, model, price, page = 1 } = req.query;
+    const itemsPerPage = 20;
     let query = 'SELECT * FROM cars WHERE 1=1';
     const params = [];
 
     if (brand) {
-        query += ' AND brand = ?';
-        params.push(brand);
+        query += ' AND brand LIKE ?';
+        params.push(`%${brand}%`);
     }
 
     if (model) {
-        query += ' AND model = ?';
-        params.push(model);
+        query += ' AND model LIKE ?';
+        params.push(`%${model}%`);
     }
 
     if (price) {
         const [minPrice, maxPrice] = price.split('-').map(Number);
-        if (isNaN(minPrice)) {
-            return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
-        }
-
-        if (maxPrice && isNaN(maxPrice)) {
-            return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
-        }
-
         if (maxPrice) {
             query += ' AND price BETWEEN ? AND ?';
             params.push(minPrice, maxPrice);
@@ -206,15 +242,23 @@ app.get('/cars', async (req, res) => {
         }
     }
 
+    query += ' LIMIT ?, ?';  // เพิ่ม LIMIT สำหรับการแบ่งหน้า
+    params.push((page - 1) * itemsPerPage, itemsPerPage); // คำนวณ offset
+
     try {
         const [results] = await pool.query(query, params);
-        res.json(results);
+        const [totalCount] = await pool.query('SELECT COUNT(*) AS total FROM cars WHERE 1=1');
+        res.json({
+            cars: results,
+            total: totalCount[0].total, // จำนวนทั้งหมดที่ตรงกับคำค้นหานี้
+        });
     } catch (error) {
-        console.error(error);
+        console.error('Error fetching cars:', error);
         res.status(500).json({ message: 'Error fetching cars' });
     }
-
 });
+
+
 
 app.get('/cars/brands', async (req, res) => {
     try {
@@ -227,18 +271,78 @@ app.get('/cars/brands', async (req, res) => {
     }
 });
 
+
 app.get('/cars/models/:brand', async (req, res) => {
-    const { brand } = req.params;
+    const { brand } = req.params;  // รับค่าจาก URL parameter (แบรนด์)
+
     try {
-        // ดึงข้อมูลรุ่นจากฐานข้อมูลตามแบรนด์
-        const [rows] = await pool.query('SELECT DISTINCT model FROM cars WHERE brand = ?', [brand]);
+        // ดึงข้อมูลรุ่น, ราคา, และภาพจากฐานข้อมูลตามแบรนด์
+        const [rows] = await pool.query('SELECT model, price, image_url FROM cars WHERE brand = ?', [brand]);
+
+        // หากไม่มีข้อมูลในฐานข้อมูล
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'ไม่พบข้อมูลรุ่นรถของแบรนด์นี้' });
+        }
+
+        // ส่งข้อมูลรุ่น, ราคา และภาพกลับไป
         res.json(rows);
     } catch (error) {
         console.error('Error fetching models:', error);
-        res.status(500).json({ message: 'Error fetching models' });
+        res.status(500).json({ message: 'เกิดข้อผิดพลาดในการดึงข้อมูลรุ่นรถ' });
     }
 });
 
+app.get('/cars/search', async (req, res) => {
+    const { query } = req.query;  // รับค่าคำค้นหาจาก query string
+    try {
+        // ค้นหาข้อมูลในตาราง cars โดยใช้คำค้นหาจากแบรนด์หรือรุ่น
+        const [results] = await pool.query(
+            'SELECT * FROM cars WHERE brand LIKE ? OR model LIKE ?',
+            [`%${query}%`, `%${query}%`]  // การใช้ LIKE กับคำค้นหาพร้อม % (wildcard)
+        );
+        res.json(results);  // ส่งผลลัพธ์ที่ค้นหากลับไปที่ frontend
+    } catch (error) {
+        console.error('Error searching cars:', error);
+        res.status(500).json({ message: 'Error searching cars' });
+    }
+});
+
+app.get('/cars/models', async (req, res) => {
+    const { brand, model } = req.query;
+    try {
+        const [rows] = await pool.query('SELECT * FROM cars WHERE brand = ? AND model = ?', [brand, model]);
+        if (rows.length > 0) {
+            res.json(rows);
+        } else {
+            res.status(404).json({ message: 'ไม่พบข้อมูลรถที่เลือก' });
+        }
+    } catch (error) {
+        console.error('Error fetching car data:', error);
+        res.status(500).json({ message: 'เกิดข้อผิดพลาดในการดึงข้อมูล' });
+    }
+});
+
+app.get('/cars/compare', async (req, res) => {
+    const { ids } = req.query;  // รับค่ารหัสของรถยนต์ที่เลือกมาเปรียบเทียบ
+    if (!ids || ids.length < 2) {
+        return res.status(400).json({ message: 'กรุณาเลือก 2 คันขึ้นไปเพื่อเปรียบเทียบ' });
+    }
+
+    try {
+        // ดึงข้อมูลของรถยนต์ที่เลือก
+        const query = `SELECT * FROM cars WHERE id IN (?)`;
+        const [cars] = await pool.query(query, [ids.split(',')]);
+
+        if (cars.length === 0) {
+            return res.status(404).json({ message: 'ไม่พบข้อมูลของรถยนต์ที่เลือก' });
+        }
+
+        res.json(cars);  // ส่งข้อมูลที่ดึงมา
+    } catch (error) {
+        console.error('Error fetching car data:', error);
+        res.status(500).json({ message: 'เกิดข้อผิดพลาดในการดึงข้อมูลรถยนต์' });
+    }
+});
 
 
 app.listen(port, async () => {

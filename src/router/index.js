@@ -38,6 +38,7 @@ import PopularrCar5 from '@/components/DetailPopularCar.vue/PopularrCar5.vue';
 import PopularrCar6 from '@/components/DetailPopularCar.vue/PopularrCar6.vue';
 
 
+
 const routes = [
     // path หน้า link ต่างๆ
     { path: '/', component: Home },
@@ -82,7 +83,9 @@ const routes = [
 
 ];
 
+
 const router = createRouter({
+    
     history: createWebHistory(),
     routes
 });

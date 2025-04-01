@@ -39,7 +39,7 @@ export default {
         {
           id: 2,
           image: 'https://autolifethailand.tv/wp-content/uploads/2025/03/MG_S5_EV_TH_001-1.jpg',
-          brand: 'BYD',
+          brand: 'MG',
           model: 'S5 EV',
           price: 849900,
           description: 'รถไฟฟ้าราคาเยี่ยม',

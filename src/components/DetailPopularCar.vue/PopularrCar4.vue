@@ -169,175 +169,306 @@
   };
   </script>
   
-  <style scoped>
+<style scoped>
+.car-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.car-info-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.car-info-header h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.car-info-header .car-description {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.car-info-header .car-price {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin: 15px 0;
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  display: inline-block;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-image-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.main-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.02);
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-button {
+  left: 20px;
+}
+
+.next-button {
+  right: 20px;
+}
+
+.chevron {
+  width: 28px;
+  height: 28px;
+}
+
+.thumbnail-gallery {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+.thumbnail-item {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  flex-shrink: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.thumbnail-item:hover {
+  opacity: 0.9;
+  transform: translateY(-5px);
+}
+
+.thumbnail-item.active {
+  opacity: 1;
+  border-color: #e74c3c;
+  transform: translateY(-5px);
+}
+
+.thumbnail {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+
+.car-article {
+  margin-top: 30px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.car-article h2 {
+  color: #e74c3c;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 10px;
+}
+
+.car-article p {
+  margin-bottom: 20px;
+  line-height: 1.7;
+  color: #34495e;
+  font-size: 1.05rem;
+}
+
+.table-section {
+  margin-top: 30px;
+  width: 100%;
+  padding-bottom: 30px;
+}
+
+.features-section {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.table-header {
+  padding: 15px 20px;
+  background-color: #e74c3c;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 0;
+}
+
+.table-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.special-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.special-table th,
+.special-table td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.special-table tbody tr:last-of-type td {
+  border-bottom: none;
+}
+
+.special-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.special-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.special-table td:first-child {
+  font-weight: 600;
+  width: 40%;
+  background-color: #f3f3f3;
+  color: #2c3e50;
+}
+
+.features-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.features-list li {
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  position: relative;
+  padding-left: 35px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.features-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.features-list li::before {
+  content: "✓";
+  color: #e74c3c;
+  position: absolute;
+  left: 15px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.disclaimer {
+  font-size: 0.9rem;
+  color: #95a5a6;
+  margin-top: 30px;
+  font-style: italic;
+  border-top: 1px solid #ecf0f1;
+  padding-top: 20px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
   .car-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-  }
-  
-  .car-info-header {
-    text-align: center;
-    margin-bottom: 20px;
+    padding: 15px;
   }
   
   .car-info-header h1 {
-    color: #212121;
-    margin-bottom: 5px;
+    font-size: 1.8rem;
   }
   
-  .car-info-header .car-description {
-    color: #757575;
-    font-size: 16px;
-  }
-  
-  .car-info-header .car-price {
-    color: #4caf50;
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 10px;
-  }
-  
-  .main-image-container {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .main-image {
-    width: 100%;
-    max-height: 500px; /* ปรับความสูงตามต้องการ */
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .prev-button,
-  .next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-  }
-  
-  .prev-button {
-    left: 10px;
-  }
-  
-  .next-button {
-    right: 10px;
-  }
-  
-  .chevron {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .thumbnail-gallery {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-    overflow-x: auto; /* เพิ่มแถบเลื่อนแนวนอนหากรูปภาพเยอะ */
-  }
-  
-  .thumbnail-item {
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 5px;
-    overflow: hidden;
-    border: 2px solid transparent;
-  }
-  
-  .thumbnail-item.active {
-    opacity: 1;
-    border-color: #4caf50; /* สีเน้นเมื่อรูปภาพถูกเลือก */
+  .car-price {
+    font-size: 1.5rem;
   }
   
   .thumbnail {
-    width: 80px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
-    display: block;
+    width: 90px;
+    height: 70px;
   }
   
-  .car-article {
-    margin-top: 30px;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 20px; /* เพิ่ม margin-bottom ให้ car-article */
-  }
-  
-  .car-article h2 {
-    color: #4caf50;
-    margin-bottom: 10px;
-  }
-  
-  .table-section {
-    margin-top: 5%; /* ปรับ margin-top ของ table-section */
-    width: 100%;
-    padding-bottom: 30px;
-  }
-  
-  .table-header {
-    padding: 10px;
-    background-color: #f2f2f2; /* สีพื้นหลังอ่อน */
-    border-radius: 8px 8px 0 0; /* มุมโค้งด้านบน */
-    margin-bottom: 0;
-  }
-  
-  .table-header h3 {
-    color: #4caf50;
-    margin: 0;
-    font-size: 1.1em; /* ปรับขนาดตัวอักษรเล็กน้อย */
-  }
-  
-  .special-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ccc; /* เส้นขอบรอบนอก */
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px; /* เพิ่ม margin-bottom ให้ตาราง */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเล็กน้อย */
-  }
-  
-  .special-table th,
-  .special-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .special-table tbody tr:last-of-type td {
-    border-bottom: 1px solid #ccc; /* เส้นขอบด้านล่าง */
-  }
-  
-  .special-table tbody tr:nth-child(even) {
-    background-color: #f3f3f3; /* สลับสีพื้นหลังแถว */
+  .features-list {
+    grid-template-columns: 1fr;
   }
   
   .special-table td:first-child {
-    font-weight: bold; /* ทำให้หัวข้อในคอลัมน์แรกหนา */
-    background-color: #f9f9f9; /* สีพื้นหลังอ่อนสำหรับหัวข้อ */
+    width: 50%;
   }
-  
-  .disclaimer {
-    font-size: 14px;
-    color: #9e9e9e;
-    margin-top: 20px;
-    font-style: italic;
-  }
-  </style>
+}
+</style>

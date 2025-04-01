@@ -5,26 +5,6 @@
 
   <!-- <div class="dropdown"> -->
     <router-link to ="/car-list"><button class="nav-button">รถยนต์</button></router-link>
-    <!-- <div class="dropdown-content"> -->
-      <!-- <button @click="navigateTo('/Toyata-brand')" class="dropdown-item">• Toyota</button>
-        <button @click="navigateTo('/Isuzu-brand')" class="dropdown-item">• Isuzu</button>
-        <button @click="navigateTo('/Honda-brand')" class="dropdown-item">• Honda</button>
-        <button @click="navigateTo('/Mitsubishi-brand')" class="dropdown-item">• Mitsubishi</button>
-        <button @click="navigateTo('/Ford-brand')" class="dropdown-item">• Ford</button>
-        <button @click="navigateTo('/MG-brand')" class="dropdown-item">• MG</button>
-        <button @click="navigateTo('/Nissan-brand')" class="dropdown-item">• Nissan</button>
-        <button @click="navigateTo('/Mazda-brand')" class="dropdown-item">• Mazda</button>
-        <button @click="navigateTo('/GWM-brand')" class="dropdown-item">• GWM</button>
-        <button @click="navigateTo('/Suzuki-brand')" class="dropdown-item">• Suzuki</button>
-        <button @click="navigateTo('/Porsche-brand')" class="dropdown-item">• Porsche</button>
-        <button @click="navigateTo('/BMW-brand')" class="dropdown-item">• BMW</button>
-        <button @click="navigateTo('/Audi-brand')" class="dropdown-item">• Audi</button>
-        <button @click="navigateTo('/Ferrari-brand')" class="dropdown-item">• Ferrari</button>
-        <button @click="navigateTo('/Mercedes-Benz-brand')" class="dropdown-item">• Mercedes-Benz</button>
-
-    </div>
-  </div> -->
-
     <router-link to ="/car-comparison"><button class="nav-button" >เปรียบเทียบรถยนต์</button></router-link>
     <router-link to ="/loan-calculator"><button class="nav-button" >คำนวณการผ่อนชำระ</button></router-link>
     <router-link to ="/Update-News"><button class="nav-button" >ข่าวสาร</button></router-link>
@@ -57,6 +37,7 @@ export default {
   font-size: 16px;
   transition-duration: 0.4s;
   cursor: pointer;
+  box-shadow: 2px 2px 2px;
 }
 
 .nav-button:hover {

@@ -3,12 +3,10 @@
     <h2>Car Comparison</h2>
     <div class="car-selection">
       <div class="car-card" v-for="(car, index) in selectedCars" :key="index">
-        <div class="car-info">
-          <img :src="car.image" alt="Car" />
-          <p>{{ car.brand }} | {{ car.model }}</p>
-          <button @click="removeCar(index)" class="remove-car-btn">Remove</button>
+            <img :src="car.image" alt="Car" />
+            <p>{{ car.brand }} | {{ car.model }}</p>
+            <button @click="removeCar(index)" class="remove-car-btn">Remove</button>
         </div>
-      </div>
       <div v-if="selectedCars.length < 3" class="car-card empty" @click="openModal">
         <span>+</span>
         <p>Select Car</p>
@@ -164,21 +162,35 @@
 </template>
 
 <script>
+import axios from 'axios'; // เพิ่มการนำเข้า axios ที่นี่
 export default {
   name: 'ComparisonComponent',
   data() {
     return {
-      selectedCars: [],
+      selectedCars: [],  // รถที่เลือก
       selectedBrand: '',
       selectedModel: '',
-      brands: ['Toyota', 'Honda', 'Ford', 'BMW'],
-      carsData: {
-        Toyota: ['Corolla', 'Camry', 'Hilux'],
-        Honda: ['Civic', 'Accord', 'HR-V'],
-        Ford: ['Mustang', 'Fiesta'],
-        BMW: ['X5', '3 Series', 'M4']
+      brands: ['Toyota', 'Honda', 'Nissan', 'BMW', 'MercedesBenz'
+        ,'Isuzu','Ford','MG','Mazda','GWM','Suzuki','Porsche','Audi','Ferrari','Mitsubishi'
+      ],
+      models: {
+        Toyota: ['Corolla', 'Camry','Hilux','Fortuner','Vios','Yaris','Land Cruiser','RAV4','Sienna','Aqua'],
+        Honda: ['Civic', 'Accord','CR-V','HR-V','Jazz','Brio','Pilot','Odyssey','Insight','Elysion'],
+        Nissan: ['Altima', 'Maxima','Rogue','X-Trail','Juke','Leaf','Navara','Pathfinder','Murano','370Z'],
+        BMW: ['X5', 'X6','M4','M3','7 Series','Z4','X3','5 Series','i8','M2'],
+        MercedesBenz: ['G-Class', 'A-Class','E-Class','S-Class','GLC','GLE','AMG GT','CLA-Class','G-Class','SL-Class'],
+        Isuzu:['D-Max','MU-X','V-Cross','TFR','N-Series','Giga','F-Series','Civic','Panther','D-MAX X',],
+        Ford:['Focus','Mustang','F-150','Escape','Explorer','Edge','Ranger','Fiesta','Tourneo','Kuga',],
+        MG:['MG5','MG ZS','MG HS','MG3','MG Hector','MG6','MG RX5','MG6 Plus','MG5 EV','MG ZS EV',],
+        Mazda:['Mazda3','Mazda6','CX-5','CX-3','Mazda2','MX-5','Mazda3 Hatchback','CX-9','Mazda6 Wagon','Mazda CX-50',],
+        GWM:['P-Series','Haval H6','Haval F7','P-Series EV','Haval Jolion','Great Wall Steed','Haval H9','Haval F5','Haval M6','Haval E2',],
+        Suzuki:['Swift','Jimny','Vitara','Celerio','Baleno','Alto','S-Cross','Ertiga','SX4 S-Cross','Grand Vitara',],
+        Porsche:['911','Cayenne','Macan','Panamera','Taycan','718 Cayman','718 Boxster','911 Turbo','911 Carrera','Cayenne Coupe',],
+        Audi:['A3','A4','Q5','Q7','Q8','A6','A8','S3','R8','TT',],
+        Ferrari:['488 GTB','812 Superfast','Portofino','F8 Tributo','LaFerrari','GTC4Lusso','Ferrari California T','Roma','	F12 Berlinetta','Ferrari 488 Pista',],
+        Mitsubishi:['Triton','Pajero Sport','Outlander','Montero','Mirage','Lancer','ASX','Delica','Expander','Eclipse Cross',],
       },
-      filteredModels: [],
+      filteredModels: [],  // รุ่นที่กรองแล้ว
       isModalOpen: false,
       showComparisonTable: false
     };
@@ -191,34 +203,65 @@ export default {
       this.isModalOpen = false;
     },
     filterModels() {
-      this.filteredModels = this.carsData[this.selectedBrand] || [];
+      // ตรวจสอบว่า selectedBrand มีค่าและอยู่ใน models
+    if (this.selectedBrand && this.models[this.selectedBrand]) {
+      this.filteredModels = this.models[this.selectedBrand]; // ถ้าเลือกแบรนด์ที่มีใน models
+    } else {
+      this.filteredModels = []; // ถ้าไม่มีการเลือกหรือเลือกแบรนด์ที่ไม่มีใน models
+    }
     },
     addCar() {
-      const newCar = {
-        brand: this.selectedBrand,
-        model: this.selectedModel,
-        price: '100,000', // เพิ่มราคาจากข้อมูลจริง
-        year: '2022', // เพิ่มปีจากข้อมูลจริง
-        type: 'SUV', // ประเภท
-        advantages: 'Lorem ipsum dolor sit amet consectetur.', // จุดเด่น
-        engine: 'DOHC 4 สูบ 16 วาล์ว i-VTEC', // เครื่องยนต์
-        cc: '1,498', // ขนาดเครื่องยนต์
-        engine_power: '121', // กำลังเครื่องยนต์
-        gear_system: 'เกียร์ออโต้แบบ CVT', // ระบบเกียร์
-        gear_form: 'N/A', // รูปแบบเกียร์
-        Fuel_type: 'เบนซิน 95', // ประเภทน้ำมัน
-        interior_design: 'สีทูโทน', // ดีไซน์ภายใน
-        exterior_design: 'สปอร์ต', // ดีไซน์ภายนอก
-        security: 'ระบบเบรก ABS, ระบบควบคุมการทรงตัว', // ระบบความปลอดภัย
-        image: `https://via.placeholder.com/150?text=${this.selectedBrand}+${this.selectedModel}`,
-        id: this.selectedCars.length + 1
-      };
-      if (this.selectedCars.length < 3) {
-        this.selectedCars.push(newCar);
+      if (!this.selectedBrand || !this.selectedModel) {
+        alert("กรุณาเลือกแบรนด์และรุ่นของรถ");
+        return;
       }
-      this.selectedBrand = '';
-      this.selectedModel = '';
-      this.closeModal();
+
+      // ส่งคำขอไปที่ Backend เพื่อดึงข้อมูลของรถที่เลือก
+      axios.get('http://localhost:8000/cars/models', {
+        params: {
+          brand: this.selectedBrand,
+          model: this.selectedModel
+        }
+      })
+      .then(response => {
+        if (response.data && response.data.length > 0) {
+          const carData = response.data[0];  // สมมติว่า Backend ส่งข้อมูลรถในรูปแบบของ array และเลือกข้อมูลแรก
+
+          // สร้างข้อมูลใหม่สำหรับรถยนต์จากข้อมูลที่ได้จาก Backend
+          const newCar = {
+            brand: this.selectedBrand,
+            model: this.selectedModel,
+            price: carData.price,  // ดึงข้อมูลราคา
+            year: carData.year,  // ดึงข้อมูลปี
+            type: carData.type,  // ประเภท
+            advantages: carData.advantages,  // จุดเด่น
+            engine: carData.engine,  // เครื่องยนต์
+            cc: carData.cc,  // ขนาดเครื่องยนต์
+            engine_power: carData.engine_power,  // กำลังเครื่องยนต์
+            gear_system: carData.gear_system,  // ระบบเกียร์
+            gear_form: carData.gear_form,  // รูปแบบเกียร์
+            Fuel_type: carData.Fuel_type,  // ประเภทน้ำมัน
+            interior_design: carData.interior_design,  // ดีไซน์ภายใน
+            exterior_design: carData.exterior_design,  // ดีไซน์ภายนอก
+            security: carData.security,  // ระบบความปลอดภัย
+            image: carData.image_url,  // ใช้ URL ของภาพจากข้อมูล
+            id: this.selectedCars.length + 1
+          };
+
+          if (this.selectedCars.length < 3) {
+            this.selectedCars.push(newCar);  // เพิ่มรถในรายการที่เลือก
+          }
+          this.selectedBrand = '';  // รีเซ็ตการเลือกแบรนด์
+          this.selectedModel = '';  // รีเซ็ตการเลือกรุ่น
+          this.closeModal();  // ปิด modal
+        } else {
+          alert('ไม่พบข้อมูลรถยนต์ที่เลือก');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching car data:', error);
+        alert('ไม่สามารถดึงข้อมูลรถยนต์ได้');
+      });
     },
     removeCar(index) {
       this.selectedCars.splice(index, 1);
@@ -228,14 +271,51 @@ export default {
         alert("กรุณาเลือกอย่างน้อย 2 คัน!");
         return;
       }
-      this.showComparisonTable = true; // แสดงตารางเมื่อกดปุ่มเปรียบเทียบ
+
+      const carIds = this.selectedCars.map(car => car.id);  // ดึง ID ของรถที่เลือก
+
+      // ส่งคำขอไปที่ Backend เพื่อดึงข้อมูลการเปรียบเทียบ
+      axios.get('http://localhost:8000/cars/compare', {
+        params: { ids: carIds.join(',') }
+      })
+         .then(response => {
+          if (response.data && response.data.length > 0) {
+      // รวมข้อมูลจาก API เข้ากับข้อมูลเดิม โดยไม่เปลี่ยนแบรนด์, ชื่อ และรูป
+      this.selectedCars = this.selectedCars.map(car => {
+        const updatedCar = response.data.find(c => c.id === car.id);
+        return updatedCar ? { 
+          ...car, 
+          price: updatedCar.price,
+          year: updatedCar.year,
+          type: updatedCar.type,
+          advantages: updatedCar.advantages,
+          engine: updatedCar.engine,
+          cc: updatedCar.cc,
+          engine_power: updatedCar.engine_power,
+          gear_system: updatedCar.gear_system,
+          gear_form: updatedCar.gear_form,
+          Fuel_type: updatedCar.Fuel_type,
+          interior_design: updatedCar.interior_design,
+          exterior_design: updatedCar.exterior_design,
+          security: updatedCar.security
+        } : car;
+      });
+    }
+      this.showComparisonTable = true;
+    })
+        .catch(error => {
+          console.error('Error comparing cars:', error);
+          alert('เกิดข้อผิดพลาดในการเปรียบเทียบ');
+        });
+
     },
     resetComparison() {
       this.selectedCars = [];
-      this.showComparisonTable = false; // รีเซ็ตการแสดงตาราง
+      this.showComparisonTable = false;  // รีเซ็ตการแสดงตาราง
     }
   }
 };
+
 </script>
 
 <style scoped>

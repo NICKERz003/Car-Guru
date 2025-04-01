@@ -5,11 +5,11 @@
       <!-- การแสดงการ์ดรถยนต์ -->
       <div class="car-card" v-for="car in cars" :key="car.id">
         <div class="car-image">
-          <img :src="car.image" alt="Car image" />
+          <img :src="car.image_url" alt="Car image" />
         </div>
         <div class="car-details">
           <h3>{{ car.brand }} {{ car.model }}</h3>
-          <p class="car-price">฿{{ car.price.toLocaleString() }}</p>
+          <p class="car-price">฿{{car.price.toLocaleString('th')}}</p>
           <p class="car-description">{{ car.description }}</p>
           <router-link :to="'/car-detail/' + car.id">
             <button class="view-details">ดูรายละเอียด</button>
@@ -31,6 +31,12 @@
 export default {
   props: ['cars', 'currentPage', 'totalPages'],  // รับข้อมูลกรองจาก parent component
   methods: {
+    formatPrice(price) {
+      return price.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    },
     nextPage() {
       if (this.currentPage < this.totalPages) {
          this.$emit('next-page');
@@ -41,6 +47,7 @@ export default {
         this.$emit('prev-page');
       }
     },
+    
   },
 };
 </script>
@@ -65,19 +72,19 @@ export default {
 .car-card {
   background-color: #fff;
   border-radius: 10px;
+  width: 200px;
   box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
-  margin: auto;
   padding: 10px;
   transition: transform 0.3s;
-  width: 60%;
+  
 }
 
 .car-image img {
   width: 100%;
   height: 150px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .view-details {
