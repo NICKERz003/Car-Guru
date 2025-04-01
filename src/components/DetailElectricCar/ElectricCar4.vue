@@ -152,7 +152,7 @@ export default {
     return {
       carName: "Geely EX5",
       carDescription: "รถไฟฟ้า SUV ระดับกลาง",
-      carPrice: "฿1,199,000",
+      carPrice: "฿949,000",
       carImages: [
         "https://geely.thonburi.com/assets/exterior-01.webp",
         "https://geely.thonburi.com/assets/interior-001.png",
@@ -209,7 +209,7 @@ export default {
 }
 
 .car-info-header .car-price {
-  color: #e74c3c;
+  color: #45a049;
   font-weight: bold;
   font-size: 1.8rem;
   margin: 15px 0;
@@ -307,7 +307,7 @@ export default {
 
 .thumbnail-item.active {
   opacity: 1;
-  border-color: #e74c3c;
+  border-color: #45a049;
   transform: translateY(-5px);
 }
 
@@ -330,7 +330,7 @@ export default {
 }
 
 .car-article h2 {
-  color: #e74c3c;
+  color: #45a049;
   margin-bottom: 20px;
   font-size: 1.8rem;
   border-bottom: 2px solid #ecf0f1;
@@ -357,7 +357,7 @@ export default {
 
 .table-header {
   padding: 15px 20px;
-  background-color: #e74c3c;
+  background-color: #45a049;
   border-radius: 10px 10px 0 0;
   margin-bottom: 0;
 }
@@ -433,7 +433,7 @@ export default {
 
 .features-list li::before {
   content: "✓";
-  color: #e74c3c;
+  color: #45a049;
   position: absolute;
   left: 15px;
   font-weight: bold;

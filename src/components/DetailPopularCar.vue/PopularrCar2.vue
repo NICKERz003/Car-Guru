@@ -145,7 +145,7 @@
       return {
         carName: "Isuzu D-Max",
         carDescription: "รถกระบะยอดนิยม",
-        carPrice: "฿653,000",
+        carPrice: "฿600,000",
         carImages: [
           "https://images.contentstack.io/v3/assets/blt04fb7dc282801dd0/blt8037dcce90e622f4/673317c0ed5a1d6b3de34aa4/4door_cab4-2-2-ddi-l-at_siberian-white_front.png", // ตัวอย่างภาพ
           "https://www.uteguide.com.au/wp-content/uploads/2020/08/Isuzu-D-MAX-21MY-X-TERRAIN-Interior-Dash.jpg",
@@ -202,7 +202,7 @@
 }
 
 .car-info-header .car-price {
-  color: #e74c3c;
+  color: #45a049;
   font-weight: bold;
   font-size: 1.8rem;
   margin: 15px 0;
@@ -300,7 +300,7 @@
 
 .thumbnail-item.active {
   opacity: 1;
-  border-color: #e74c3c;
+  border-color: #45a049;
   transform: translateY(-5px);
 }
 
@@ -323,7 +323,7 @@
 }
 
 .car-article h2 {
-  color: #e74c3c;
+  color: #45a049;
   margin-bottom: 20px;
   font-size: 1.8rem;
   border-bottom: 2px solid #ecf0f1;
@@ -350,7 +350,7 @@
 
 .table-header {
   padding: 15px 20px;
-  background-color: #e74c3c;
+  background-color: #45a049;
   border-radius: 10px 10px 0 0;
   margin-bottom: 0;
 }
@@ -426,7 +426,7 @@
 
 .features-list li::before {
   content: "✓";
-  color: #e74c3c;
+  color: #45a049;
   position: absolute;
   left: 15px;
   font-weight: bold;

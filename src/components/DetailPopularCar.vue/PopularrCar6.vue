@@ -206,7 +206,7 @@
 }
 
 .car-info-header .car-price {
-  color: #e74c3c;
+  color: #45a049;
   font-weight: bold;
   font-size: 1.8rem;
   margin: 15px 0;
@@ -304,7 +304,7 @@
 
 .thumbnail-item.active {
   opacity: 1;
-  border-color: #e74c3c;
+  border-color: #45a049;
   transform: translateY(-5px);
 }
 
@@ -327,7 +327,7 @@
 }
 
 .car-article h2 {
-  color: #e74c3c;
+  color: #45a049;
   margin-bottom: 20px;
   font-size: 1.8rem;
   border-bottom: 2px solid #ecf0f1;
@@ -354,7 +354,7 @@
 
 .table-header {
   padding: 15px 20px;
-  background-color: #e74c3c;
+  background-color: #45a049;
   border-radius: 10px 10px 0 0;
   margin-bottom: 0;
 }
@@ -430,7 +430,7 @@
 
 .features-list li::before {
   content: "✓";
-  color: #e74c3c;
+  color: #45a049;
   position: absolute;
   left: 15px;
   font-weight: bold;

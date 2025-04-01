@@ -4,19 +4,15 @@
     <div class="car-selection">
       <div class="car-card" v-for="(car, index) in selectedCars" :key="index">
             <img :src="car.image" alt="Car" />
-            <p>{{ car.brand }} | {{ car.model }}</p>
+            <p>{{ car.brand }} | {{ car.model }} | {{car.price}}</p>
             <button @click="removeCar(index)" class="remove-car-btn">Remove</button>
-        </div>
+      </div>
       <div v-if="selectedCars.length < 3" class="car-card empty" @click="openModal">
         <span>+</span>
         <p>Select Car</p>
       </div>
     </div>
 
-    <!-- Compare Button -->
-    <button :disabled="selectedCars.length < 2" @click="compareCars" class="compare-btn">
-      Compare Cars
-    </button>
 
     <!-- Reset Button -->
     <button @click="resetComparison" class="reset-btn">
@@ -47,14 +43,14 @@
       </div>
     </div>
 
-<div v-if="showComparisonTable" class="comparison-table">
+<div  class="comparison-table">
     <h3>รายละเอียดเบื้องต้น</h3>
     <div class="Detail_table">
       <table style="width:22%" v-for="car in selectedCars" :key="car.id">
         <tr>
           <td>
-           <span>แบรนด์</span>
-            <h4>{{ car.brand }}</h4>
+           <span >แบรนด์</span>
+            <h4 >{{ car.brand }}</h4>
           </td>
         </tr>
         <tr>
@@ -66,7 +62,7 @@
         <tr>
           <td>
             <span>ราคา</span>
-            <h4>{{car.price}}</h4>
+            <h4>{{car.price}} บาท</h4>
           </td>
         </tr>
         <tr>
@@ -165,6 +161,12 @@
 import axios from 'axios'; // เพิ่มการนำเข้า axios ที่นี่
 export default {
   name: 'ComparisonComponent',
+  // props: {
+  //   cars: { 
+  //     type: Array, 
+  //     required: true 
+  //   }
+  // },
   data() {
     return {
       selectedCars: [],  // รถที่เลือก
@@ -211,6 +213,7 @@ export default {
     }
     },
     addCar() {
+      
       if (!this.selectedBrand || !this.selectedModel) {
         alert("กรุณาเลือกแบรนด์และรุ่นของรถ");
         return;
@@ -240,7 +243,7 @@ export default {
             engine_power: carData.engine_power,  // กำลังเครื่องยนต์
             gear_system: carData.gear_system,  // ระบบเกียร์
             gear_form: carData.gear_form,  // รูปแบบเกียร์
-            Fuel_type: carData.Fuel_type,  // ประเภทน้ำมัน
+            Fuel_type: carData.fuel_type,  // ประเภทน้ำมัน
             interior_design: carData.interior_design,  // ดีไซน์ภายใน
             exterior_design: carData.exterior_design,  // ดีไซน์ภายนอก
             security: carData.security,  // ระบบความปลอดภัย
@@ -250,6 +253,7 @@ export default {
 
           if (this.selectedCars.length < 3) {
             this.selectedCars.push(newCar);  // เพิ่มรถในรายการที่เลือก
+            this.$emit('updateSelectedCars', this.selectedCars); // ส่งข้อมูลกลับไปยัง parent component
           }
           this.selectedBrand = '';  // รีเซ็ตการเลือกแบรนด์
           this.selectedModel = '';  // รีเซ็ตการเลือกรุ่น
@@ -271,7 +275,7 @@ export default {
         alert("กรุณาเลือกอย่างน้อย 2 คัน!");
         return;
       }
-
+      
       const carIds = this.selectedCars.map(car => car.id);  // ดึง ID ของรถที่เลือก
 
       // ส่งคำขอไปที่ Backend เพื่อดึงข้อมูลการเปรียบเทียบ
@@ -283,22 +287,25 @@ export default {
       // รวมข้อมูลจาก API เข้ากับข้อมูลเดิม โดยไม่เปลี่ยนแบรนด์, ชื่อ และรูป
       this.selectedCars = this.selectedCars.map(car => {
         const updatedCar = response.data.find(c => c.id === car.id);
-        return updatedCar ? { 
-          ...car, 
-          price: updatedCar.price,
-          year: updatedCar.year,
-          type: updatedCar.type,
-          advantages: updatedCar.advantages,
-          engine: updatedCar.engine,
-          cc: updatedCar.cc,
-          engine_power: updatedCar.engine_power,
-          gear_system: updatedCar.gear_system,
-          gear_form: updatedCar.gear_form,
-          Fuel_type: updatedCar.Fuel_type,
-          interior_design: updatedCar.interior_design,
-          exterior_design: updatedCar.exterior_design,
-          security: updatedCar.security
-        } : car;
+        if (updatedCar) {
+            return {
+              ...car,
+              price: updatedCar.price,
+              year: updatedCar.year,
+              type: updatedCar.type,
+              advantages: updatedCar.advantages,
+              engine: updatedCar.engine,
+              cc: updatedCar.cc,
+              engine_power: updatedCar.engine_power,
+              gear_system: updatedCar.gear_system,
+              gear_form: updatedCar.gear_form,
+              Fuel_type: updatedCar.fuel_type,
+              interior_design: updatedCar.interior_design,
+              exterior_design: updatedCar.exterior_design,
+              security: updatedCar.security
+            };
+          }
+          return car;
       });
     }
       this.showComparisonTable = true;
@@ -320,18 +327,22 @@ export default {
 
 <style scoped>
 
-.Detail_table{
+.Detail_table {
   width: 80%;
   display: flex;
   justify-content: center;
   margin: auto;
 }
+
 .compare-cars {
   padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 h2 {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .car-selection {
@@ -350,6 +361,12 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.car-card:hover {
+  transform: scale(1.05);
 }
 
 .car-card.empty {
@@ -357,6 +374,7 @@ h2 {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background-color: #f0f0f0;
 }
 
 .remove-car-btn {
@@ -365,6 +383,11 @@ h2 {
   border: none;
   padding: 5px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.remove-car-btn:hover {
+  background-color: darkred;
 }
 
 .compare-btn {
@@ -375,11 +398,17 @@ h2 {
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .compare-btn:disabled {
   background-color: gray;
   cursor: not-allowed;
+}
+
+.compare-btn:hover {
+  background-color: darkgreen;
 }
 
 .reset-btn {
@@ -390,6 +419,12 @@ h2 {
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.reset-btn:hover {
+  background-color: darkred;
 }
 
 .modal {
@@ -410,7 +445,7 @@ h2 {
   border-radius: 10px;
   width: 300px;
   text-align: center;
-  position: relative; /* ทำให้ปุ่ม "X" อยู่ในมุมขวาบน */
+  position: relative;
 }
 
 .close-btn {
@@ -425,13 +460,14 @@ h2 {
 }
 
 .add-car-btn {
-    width: 100%;
+  width: 100%;
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: blue;
+  background-color: #45a049;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 select {
@@ -441,22 +477,80 @@ select {
 }
 
 .comparison-table {
-  margin-top: 20px;
+  width: 90%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-table {
-  width: 100%;
+.comparison-table h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.Detail_table {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.Detail_table table {
+  width: 48%;
   border-collapse: collapse;
-  margin-top: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.Detail_table table tr {
+  background-color: #fff;
 }
 
-table th, table td {
-  padding: 10px;
+.Detail_table table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.Detail_table table th,
+.Detail_table table td {
+  padding: 12px;
   border: 1px solid #ddd;
   text-align: center;
+  font-size: 1rem;
 }
 
-table th {
-  background-color: #f4f4f4;
+.Detail_table table th {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  font-weight: bold;
+}
+
+.Detail_table table td {
+  color: #555;
+}
+
+.Detail_table table tr td span {
+  font-weight: bold;
+  color: #333;
+}
+
+.Detail_table table tr td h4 {
+  margin: 5px 0 0;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .Detail_table table {
+    width: 100%;
+  }
+
+  .comparison-table {
+    width: 95%;
+  }
 }
 </style>

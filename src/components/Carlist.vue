@@ -2,12 +2,12 @@
   <div>
 
     <Advertising_space></Advertising_space>
-    <!-- เพิ่มช่องค้นหาที่สามารถพิมพ์ในขณะที่กรองข้อมูล -->
+    
+    <FilterComponent @apply-filters="applyFilters" @reset-filters="resetFilters" />
+    <!-- ช่องค้นหาที่สามารถพิมพ์ในขณะที่กรองข้อมูล -->
     <div class="search-box">
       <input type="text" v-model="searchQuery" @input="applySearch" placeholder="Search by Brand" />
     </div>
-    <FilterComponent @apply-filters="applyFilters" @reset-filters="resetFilters" />
-    
     <CarListComponent :cars="paginatedCars" :currentPage="currentPage" :totalPages="totalPages" @next-page="nextPage" @prev-page="prevPage" />
     <NewsCard></NewsCard>
   </div>

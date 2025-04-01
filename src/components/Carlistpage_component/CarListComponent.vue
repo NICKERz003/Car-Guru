@@ -11,7 +11,7 @@
           <h3>{{ car.brand }} {{ car.model }}</h3>
           <p class="car-price">฿{{car.price.toLocaleString('th')}}</p>
           <p class="car-description">{{ car.description }}</p>
-          <router-link :to="'/car-detail/' + car.id">
+          <router-link :to="'/car-detail/'+car.id">
             <button class="view-details">ดูรายละเอียด</button>
           </router-link>
         </div>

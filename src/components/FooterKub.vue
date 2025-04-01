@@ -1,19 +1,15 @@
 <template>
   <section id="footer">
-    <div class="footer-logo">
-      <img src="/images/logo.png" alt="CARGURU">
-    </div>
     
     <div class="footer-content">
       <!-- Column 1 -->
       <div class="footer-column">
         <h3 class="column-title">รถทั้งหมด</h3>
         <ul class="footer-links">
-          <li><a href="#">รถยนต์ไฟฟ้า</a></li>
-          <li><a href="#">รถยนต์ที่นิยมในไทย</a></li>
-          <li><a href="#">รถยนต์ที่มาใหม่ในไทย</a></li>
-          <li><a href="#">โปรโมชั่นและดีลพิเศษ</a></li>
-          <li><a href="#">ไฟแนนซ์รถยนต์</a></li>
+          <li><a href="/">รถยนต์ไฟฟ้า</a></li>
+          <li><a href="/">รถยนต์ที่นิยมในไทย</a></li>
+          <li><a href="/">รถยนต์ที่มาใหม่ในไทย</a></li>
+          <li><a href="/">โปรโมชั่นและดีลพิเศษ</a></li>
         </ul>
       </div>
       
@@ -22,21 +18,18 @@
         <h3 class="column-title">เว็บไซต์</h3>
         <ul class="footer-links">
           <li><a href="#">ติดต่อเรา</a></li>
-          <li><a href="#">เงื่อนไขการใช้งาน</a></li>
-          <li><a href="#">เข้าสู่ระบบ/สมัครสมาชิก</a></li>
+          <li><a href="/Update-News">ข่าวสาร</a></li>
+          <li><a href="/login-page">เข้าสู่ระบบ/สมัครสมาชิก</a></li>
         </ul>
 
         <div class="social-section">
-          <h3>อัปเดตคอนเทนต์ใหม่ รับดีลพิเศษก่อนใคร แอดเลย!</h3>
+          <h3>อัปเดตคอนเทนต์ใหม่ รับดีลพิเศษก่อนใคร ที่นี่!</h3>
           <div class="social-icons">
             <a href="#" class="social-icon">
-              <img src="/images/facebook.png" alt="Facebook" width="30" height="30">
+              <img src="https://cdn.pixabay.com/photo/2021/06/15/12/51/facebook-6338509_1280.png" alt="Facebook" width="30" height="30">
             </a>
             <a href="#" class="social-icon">
-              <img src="/images/twitter.png" alt="Twitter" width="30" height="30">
-            </a>
-            <a href="#" class="social-icon">
-              <img src="/images/youtube.png" alt="YouTube" width="30" height="30">
+              <img src="https://th.bing.com/th/id/R.1fcdfa46f0d86204197199f44c2f2a04?rik=FP5HsWTgkt%2bGuQ&pid=ImgRaw&r=0" alt="Twitter" width="30" height="30">
             </a>
           </div>
         </div>

@@ -205,7 +205,7 @@ export default {
 }
 
 .car-info-header .car-price {
-  color: #e74c3c;
+  color: #45a049;
   font-weight: bold;
   font-size: 1.8rem;
   margin: 15px 0;

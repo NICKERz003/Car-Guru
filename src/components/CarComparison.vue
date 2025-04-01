@@ -1,18 +1,20 @@
 <template>
   <div>
     <Advertising_space></Advertising_space>
-    <ComparisonComponent></ComparisonComponent>
+    <ComparisonComponent :cars="cars" @updateSelectedCars="updateSelectedCars"></ComparisonComponent>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import ComparisonComponent from './CarComparepage_component/ComparisonComponent.vue';
 import Advertising_space from './Advertising_space.vue';
+
 export default {
-  components:{
+  components: {
     ComparisonComponent,
     Advertising_space
-  } ,
+  },
   data() {
     return {
       cars: [] // This will hold the car data for comparison
@@ -23,12 +25,18 @@ export default {
   },
   methods: {
     fetchCars() {
-      // Logic to fetch data from an API or local state
-      this.cars = [
-        { id: 1, name: 'Car 1', specs: 'Engine: 200HP, Fuel: Petrol' },
-        { id: 2, name: 'Car 2', specs: 'Engine: 180HP, Fuel: Diesel' },
-        // Add actual data fetching logic
-      ];
+      // Replace this logic with actual API calls to fetch car data
+      axios.get('http://localhost:8000/cars')  // Assume you're fetching data from API
+        .then(response => {
+          this.cars = response.data.cars;  // Assuming 'cars' is the response data
+        })
+        .catch(error => {
+          console.error("Error fetching cars:", error);
+        });
+    },
+    updateSelectedCars(selectedCars) {
+      // Optionally, you can handle the updated selected cars here if needed
+      console.log('Selected Cars:', selectedCars);
     }
   }
 };
