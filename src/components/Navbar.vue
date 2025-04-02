@@ -19,7 +19,6 @@ export default {
 </script>
 <style scoped>
 #nav-bar {
-  background-color: #e7e7e7; 
   display: flex;
   justify-content: center;
   align-items: center;

@@ -4,7 +4,8 @@
     <div class="car-selection">
       <div class="car-card" v-for="(car, index) in selectedCars" :key="index">
             <img :src="car.image" alt="Car" />
-            <p>{{ car.brand }} | {{ car.model }} | {{car.price}}</p>
+            <strong>{{ car.brand }} | {{ car.model }}</strong>
+            <strong>฿ {{car.price}}</strong>
             <button @click="removeCar(index)" class="remove-car-btn">Remove</button>
       </div>
       <div v-if="selectedCars.length < 3" class="car-card empty" @click="openModal">
@@ -62,7 +63,7 @@
         <tr>
           <td>
             <span>ราคา</span>
-            <h4>{{car.price}} บาท</h4>
+            <h4>฿ {{car.price}}</h4>
           </td>
         </tr>
         <tr>
@@ -350,14 +351,13 @@ h2 {
 }
 
 .car-selection {
+  height: 330px;
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
 .car-card {
-  width: 200px;
-  height: 250px;
   border: 1px solid #ccc;
   border-radius: 10px;
   text-align: center;
@@ -374,6 +374,8 @@ h2 {
 }
 
 .car-card.empty {
+  max-width: 250px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -416,8 +418,8 @@ h2 {
 }
 
 .reset-btn {
-  display: block;
-  margin: 10px auto;
+  display: block; 
+  margin: 25px auto;
   padding: 10px 20px;
   background-color: red;
   color: white;

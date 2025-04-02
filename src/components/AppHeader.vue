@@ -22,7 +22,7 @@ export default {
   name: 'AppHeader',
   components: {
     LoginBtn,
-    ProfileBtn
+    ProfileBtn,
   },
   data() {
     return {

@@ -9,7 +9,7 @@
         </div>
         <div class="car-details">
           <h3>{{ car.brand }} {{ car.model }}</h3>
-          <p class="car-price">฿{{car.price.toLocaleString('th')}}</p>
+          <p class="car-price">฿{{car.price.toLocaleString()}}</p>
           <p class="car-description">{{ car.description }}</p>
           <router-link :to="'/car-detail/' + car.brand + '/'+ car.model">
             <button class="view-details">ดูรายละเอียด</button>

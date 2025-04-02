@@ -170,51 +170,6 @@ app.put('/profile', async (req, res) => {
 });
 
 // API cars filter
-// app.get('/cars', async (req, res) => {
-//     const { brand, model, price, page = 1 } = req.query;  // รับค่าจาก query string
-//     const itemsPerPage = 20;  // จำนวนรายการต่อหน้า
-//     // สร้างเงื่อนไขการกรอง
-//     let query = 'SELECT * FROM cars WHERE 1=1';
-//     const params = [];
-
-//     if (brand) {
-//         query += ' AND brand = ?';
-//         params.push(brand);
-//     }
-
-//     if (model) {
-//         query += ' AND model = ?';
-//         params.push(model);
-//     }
-
-//     if (price) {
-//         const [minPrice, maxPrice] = price.split('-').map(Number);
-//         if (isNaN(minPrice)) {
-//             return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
-//         }
-
-//         if (maxPrice && isNaN(maxPrice)) {
-//             return res.status(400).json({ message: 'ราคาที่กรอกไม่ถูกต้อง' });
-//         }
-
-//         if (maxPrice) {
-//             query += ' AND price BETWEEN ? AND ?';
-//             params.push(minPrice, maxPrice);
-//         } else {
-//             query += ' AND price >= ?';
-//             params.push(minPrice);
-//         }
-//     }
-
-//     try {
-//         const [results] = await pool.query(query, params);
-//         res.json(results);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Error fetching cars' });
-//     }
-
-// });
 app.get('/cars', async (req, res) => {
     const { brand, model, price, page = 1 } = req.query;
     const itemsPerPage = 20;
@@ -258,8 +213,6 @@ app.get('/cars', async (req, res) => {
     }
 });
 
-
-
 app.get('/cars/brands', async (req, res) => {
     try {
         // ดึงข้อมูลแบรนด์จากฐานข้อมูล
@@ -270,7 +223,6 @@ app.get('/cars/brands', async (req, res) => {
         res.status(500).json({ message: 'Error fetching brands' });
     }
 });
-
 
 app.get('/cars/models/:brand', async (req, res) => {
     const { brand } = req.params;  // รับค่าจาก URL parameter (แบรนด์)
